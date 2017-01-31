@@ -1,0 +1,286 @@
+$bg: #eaebec
+
+
+@mixin size($width,$height)
+  width: $width
+  height: $height
+@mixin center
+  margin-right: auto
+  margin-left: auto
+@mixin margin($top,$bottom)
+  margin-top: $top
+  margin-bottom: $bottom
+
+body
+  margin: 0
+  padding: 0
+
+.menu_first
+  background-color: $bg
+  width: 100%
+  padding-bottom: 20px
+
+.menu_second
+  width: 800px
+  @include center
+
+.tytul
+  margin-left: 250px
+  margin-right: 200px
+  font-size: 26px
+
+.pogrubienie
+  font-weight: bold
+
+
+
+
+*:focus
+  outline: none
+
+
+
+.tabela2
+  font-family: Arial, Helvetica, sans-serif
+  color: #666
+  font-size: 12px
+  text-shadow: 1px 1px 0px #fff
+  background: #eaebec
+  margin: 20px
+  border: #ccc 1px solid
+  border-collapse: separate
+  -moz-border-radius: 3px
+  -webkit-border-radius: 3px
+  border-radius: 3px
+  -moz-box-shadow: 0 1px 2px #d1d1d1
+  -webkit-box-shadow: 0 1px 2px #d1d1d1
+  box-shadow: 0 1px 2px #d1d1d1
+  @include center
+
+.tabela2 th
+  font-weight: bold
+  padding: 21px 25px 22px 25px
+  border-top: 1px solid #fafafa
+  border-bottom: 1px solid #e0e0e0
+  border-left: 1px solid #e0e0e0
+  background: #ededed
+  background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb))
+  background: -moz-linear-gradient(top,  #ededed,  #ebebeb)
+
+.tabela2 th:first-child
+  text-align: left
+  padding-left: 20px
+
+.tabela2 tr:first-child th:first-child
+  -moz-border-radius-topleft: 3px
+  -webkit-border-top-left-radius: 3px
+  border-top-left-radius: 3px
+
+.tabela2 tr:first-child th:last-child
+  -moz-border-radius-topright: 3px
+  -webkit-border-top-right-radius: 3px
+  border-top-right-radius: 3px
+
+.tabela2 tr
+  text-align: center
+  padding-left: 20px
+
+.tabela2 tr td:first-child
+  text-align: left
+  padding-left: 20px
+  border-left: 0
+
+.tabela2 tr td
+  padding: 18px
+  border-top: 1px solid #ffffff
+  border-bottom: 1px solid #e0e0e0
+  border-left: 1px solid #e0e0e0
+  background: #fafafa
+  background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa))
+  background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa)
+
+.tabela2 tr:nth-child(even) td
+  background: #f6f6f6
+  background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6))
+  background: -moz-linear-gradient(top,  #f8f8f8,  #f6f6f6)
+
+.tabela2 tr:last-child td
+  border-bottom: 0
+
+.tabela2 tr:last-child td:first-child
+  -moz-border-radius-bottomleft: 3px
+  -webkit-border-bottom-left-radius: 3px
+  border-bottom-left-radius: 3px
+
+.tabela2 tr:last-child td:last-child
+  -moz-border-radius-bottomright: 3px
+  -webkit-border-bottom-right-radius: 3px
+  border-bottom-right-radius: 3px
+
+
+
+.myButton
+  margin-top: 15px
+  -moz-box-shadow: inset 0px 1px 0px 0px #ffffff
+  -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff
+  box-shadow: inset 0px 1px 0px 0px #ffffff
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9))
+  background: -moz-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%)
+  background: -webkit-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%)
+  background: -o-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%)
+  background: -ms-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%)
+  background: linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9',GradientType=0)
+  background-color: #f9f9f9
+  -moz-border-radius: 6px
+  -webkit-border-radius: 6px
+  border-radius: 6px
+  border: 1px solid #dcdcdc
+  display: inline-block
+  cursor: pointer
+  color: #666666
+  font-family: Arial
+  font-size: 15px
+  font-weight: bold
+  padding: 12px 24px
+  text-decoration: none
+  text-shadow: 0px 1px 0px #ffffff
+
+.myButton:hover
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9))
+  background: -moz-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%)
+  background: -webkit-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%)
+  background: -o-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%)
+  background: -ms-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%)
+  background: linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9',GradientType=0)
+  background-color: #e9e9e9
+
+.myButton:active
+  position: relative
+  top: 1px
+
+.myButton2
+  @extend .myButton
+  margin-top: 0px
+  font-size: 10px
+  padding: 5px 14px
+
+.myButton2:hover
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9))
+  background: -moz-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%)
+  background: -webkit-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%)
+  background: -o-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%)
+  background: -ms-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%)
+  background: linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9',GradientType=0)
+  background-color: #e9e9e9
+
+.myButton2:active
+  position: relative
+  top: 1px
+
+.alert
+  padding: 20px
+  background-color: #f44336
+  color: white
+  margin-bottom: 15px
+
+.alert2
+  padding: 20px
+  background-color: #5cb85c
+  color: white
+  margin-bottom: 15px
+  margin-top: 15px
+
+
+.closebtn
+  margin-left: 15px
+  color: white
+  font-weight: bold
+  float: right
+  font-size: 22px
+  line-height: 20px
+  cursor: pointer
+  transition: 0.3s
+
+
+.closebtn:hover
+  color: black
+
+.tabela3
+  font-family: Arial, Helvetica, sans-serif
+  color: #666
+  font-size: 12px
+  text-shadow: 1px 1px 0px #fff
+  background: #eaebec
+  margin: 20px
+  border: #ccc 1px solid
+  border-collapse: separate
+  -moz-border-radius: 3px
+  -webkit-border-radius: 3px
+  border-radius: 3px
+  -moz-box-shadow: 0 1px 2px #d1d1d1
+  -webkit-box-shadow: 0 1px 2px #d1d1d1
+  box-shadow: 0 1px 2px #d1d1d1
+  @include center
+
+.tabela3 th
+  font-weight: bold
+  padding: 11px 15px 12px 15px
+  border-top: 1px solid #fafafa
+  border-bottom: 1px solid #e0e0e0
+  border-left: 1px solid #e0e0e0
+  background: #ededed
+  background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb))
+  background: -moz-linear-gradient(top,  #ededed,  #ebebeb)
+
+.tabela3 th:first-child
+  text-align: left
+  padding-left: 20px
+
+.tabela3 tr:first-child th:first-child
+  -moz-border-radius-topleft: 3px
+  -webkit-border-top-left-radius: 3px
+  border-top-left-radius: 3px
+
+.tabela3 tr:first-child th:last-child
+  -moz-border-radius-topright: 3px
+  -webkit-border-top-right-radius: 3px
+  border-top-right-radius: 3px
+
+.tabela3 tr
+  text-align: center
+  padding-left: 20px
+
+.tabela3 tr td:first-child
+  text-align: left
+  padding-left: 20px
+  border-left: 0
+
+.tabela3 tr td
+  padding: 18px
+  border-top: 1px solid #ffffff
+  border-bottom: 1px solid #e0e0e0
+  border-left: 1px solid #e0e0e0
+  background: #fafafa
+  background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa))
+  background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa)
+
+.tabela3 tr:nth-child(even) td
+  background: #f6f6f6
+  background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6))
+  background: -moz-linear-gradient(top,  #f8f8f8,  #f6f6f6)
+
+.tabela3 tr:last-child td
+  border-bottom: 0
+
+.tabela3 tr:last-child td:first-child
+  -moz-border-radius-bottomleft: 3px
+  -webkit-border-bottom-left-radius: 3px
+  border-bottom-left-radius: 3px
+
+.tabela2 tr:last-child td:last-child
+  -moz-border-radius-bottomright: 3px
+  -webkit-border-bottom-right-radius: 3px
+  border-bottom-right-radius: 3px
