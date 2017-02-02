@@ -1,7 +1,13 @@
 <?php
 session_start();
+if(isset($_SESSION['hotline']) && $_SESSION['hotline'] == sha1(lock) && isset($_COOKIE['hotline']))
+{
+setcookie("hotline",'online', time()+900);
 require_once ('config/config.php');
-
+$username = $_SESSION['username'];
+$name = $_SESSION['name'];
+$surname = $_SESSION['surname'];
+$limit = 0;
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +23,7 @@ require_once ('config/config.php');
     <script src="js/bootstrap.js"></script>
     <script src="js/bootbox.min.js"></script>
 
+
 </head>
 <body>
 
@@ -29,13 +36,12 @@ require_once ('config/config.php');
 
 </nav>
 
-<?php
-echo $_SESSION['alert'];
-session_unset($_SESSION['alert']);
 
-
-?>
 <div class="container">
+    <?php
+    echo $_SESSION['alert2'];
+    unset($_SESSION['alert2']);
+    ?>
     <form action='' method="post">
 <table class="tabela3">
     <tr>
@@ -53,29 +59,67 @@ session_unset($_SESSION['alert']);
     </form>
 
 
-<table class="tabela2" cellspacing='0'>
-    <tr>
-        <th style="text-align: center">lp.</th>
-        <th style="text-align: center">Imię</th>
-        <th style="text-align: center">Nazwisko</th>
-        <th style="text-align: center">Jednostka Org.</th>
-        <th style="text-align: center">Czy aktywny</th>
-        <th style="text-align: center">Odblokuj</th>
-        <th style="text-align: center">Przepnij</th>
-    </tr>
+
 
     <?php
-    $imie = $_POST['imie'];
-    $nazwisko = $_POST['nazwisko'];
-    if($zapytanie = "SELECT *  FROM jednostki_organizacyjne_ewidencja, uzytkownicy_ewidencja 
-                      WHERE jednostki_organizacyjne_ewidencja.id = uzytkownicy_ewidencja.id_jednostki_organizacyjnej AND nazwisko LIKE '%$nazwisko%' AND imie LIKE '%$imie%'") {
-        $wynik = $db2->query($zapytanie);
-        $ilosc = $wynik->num_rows;
-        $licznik = $ilosc;
-        for ($i = 0; $i < $ilosc; $i++) {
-            $lp = $i+1;
-            $tablica = $wynik->fetch_assoc();
-            echo "
+    if(isset($_POST['imie'])||($_POST['nazwisko'])){
+
+        if(($_POST['imie']=="") && ($_POST['nazwisko']=="")){
+        $_SESSION['alert'] = '<div class="alert alert-danger">Nic nie wpisano.</div>';}
+        else{
+
+
+
+
+        if(($_POST['imie']==''))
+        $lp = 0;
+        $imie = $_POST['imie'];
+        $nazwisko = $_POST['nazwisko'];
+        $zapytanie = "SELECT *  FROM jednostki_organizacyjne_ewidencja, uzytkownicy_ewidencja 
+                      WHERE jednostki_organizacyjne_ewidencja.id = uzytkownicy_ewidencja.id_jednostki_organizacyjnej AND nazwisko LIKE '%$nazwisko%' AND imie LIKE '%$imie%'" ;
+        if ($wynik = $db2->query($zapytanie)) {
+            $ilosc = $wynik->num_rows;
+            $licznik = $ilosc;
+
+            if ($ilosc<1){
+                $_SESSION['alert'] = '<div class="alert alert-danger">Nie znaleziono pasującego użytkownika w systemie.</div>';
+
+            }
+            else
+                {
+
+                    echo" <table class=\"tabela2\" cellspacing='0'>
+            <tr>
+            <th style=\"text-align: center\">lp.</th>
+            <th style=\"text-align: center\">Imię</th>
+            <th style=\"text-align: center\">Nazwisko</th>
+            <th style=\"text-align: center\">Jednostka Org.</th>
+            <th style=\"text-align: center\">Czy aktywny</th>
+            <th style=\"text-align: center\">Odblokuj</th>
+            <th style=\"text-align: center\">Przepnij</th>
+              </tr>";
+
+
+            for ($i = 0; $i < $ilosc; $i++) {
+                $tablica = $wynik->fetch_assoc();
+                $pesel = $tablica['pesel'];
+
+                $zapytanie_hr = "SELECT * FROM pracownicy_ewidencja WHERE pesel LIKE '$pesel'";
+                $wynik_hr = $db2_hr->query($zapytanie_hr);
+                $tablica_hr = $wynik_hr->fetch_assoc();
+                $pracuje = $tablica_hr['czy_pracuje'];
+                if ($pracuje == 0) {
+                    continue;
+                }
+                $limit = $limit+1;
+                if($limit == 26)
+                {
+                    $_SESSION['alert'] = '<div class="alert alert-danger">Znaleziono więcej niż 25 wyników, zawęź kryteria wyszukiwania.</div>';
+                    break;
+
+                }
+                $lp = $lp + 1;
+                echo "
             <tr>
         <td>" . $lp . "</td>
         <td>" . $tablica['imie'] . "</td>
@@ -83,35 +127,45 @@ session_unset($_SESSION['alert']);
         <td>" . $tablica['nazwa'] . "</td>
         <td>";
 
-        if ($tablica['status']==1){
-            echo"<img src=\"img/ok.png\" width='25px'>";
-        }
-        else
-        {
-            echo"<img src=\"img/no.png\" width='25px'>";
-        }
+                if ($tablica['status'] == 1) {
+                    echo "<img src=\"img/ok.png\" width='25px'>";
+                } else {
+                    echo "<img src=\"img/no.png\" width='25px'>";
+                }
+
+
+                echo "</td>";
+
+
+                echo "<td><input type=submit class=\"btn btn-danger\" value='Odblokuj' onclick=\"bootbox.confirm('Czy chcesz odblokować użytkownika<b> ".$tablica['imie']." ".$tablica['nazwisko']."</b>  zmienić jego hasło na PESEL?', function(result){ if (result==true) {window.location.href='odblokuj.php?id=".$tablica['pesel']."'}; });\" class=\"myButton2\"></td>";
+
+                echo "<td><input type=submit class=\"btn btn-warning\" value='Przepnij' onclick=\"bootbox.confirm('Czy chcesz z listy usunąć użytkownika<b> ".$tablica['imie']." ".$tablica['nazwisko']."</b> i zmienić jego hasło na PESEL ?', function(result){ if (result==true) {window.location.href='del.php?id=".$tablica['pesel']."'}; });\" class=\"myButton2\"></td>";
 
 
 
+                echo "</tr>";
+            }}
+        } else
+            echo "error";
+    }}
 
-        echo"</td>
-        
-        
-        
-        <td><button class='btn btn-danger'>Odblokuj</button></td>
-        <td><button class='btn btn-warning'>Przepnij</button></td>";
 
-            echo "</tr>";
-        }
-    }
-    else
-        echo "error";
     ?>
 
 
-
-
 </table>
+    <?php
+    echo $_SESSION['alert'];
+    unset($_SESSION['alert']);
+    }
+    else
+    {
+        header('location: logout.php');
+        exit();
+        //jesli pierwszy warunek nie został spełniony to prześlij to strony wylogowania
+    }
+    //LOGOWANIE - SPRAWDZENIE - STOP
+    ?>
 </div>
 </body>
 </html>
