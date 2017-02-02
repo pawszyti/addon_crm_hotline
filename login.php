@@ -19,7 +19,7 @@ if ($result = $db13->query(sprintf("SELECT * FROM hotline_users WHERE login='%s'
     $quantity = $result->num_rows;
     if($quantity>0)
     {
-        $row =$result->fetch_assoc();
+        $row = $result->fetch_assoc();
         $login = $row['login'];
 
         if($result2 = $db2->query("SELECT * FROM uzytkownicy_ewidencja WHERE login LIKE '$login' "))
@@ -28,12 +28,18 @@ if ($result = $db13->query(sprintf("SELECT * FROM hotline_users WHERE login='%s'
             $pass_base = $row2['haslo'];
 
             if ($pass_base==$pass) {
-                $_SESSION['username'] = $row['username'];
-                $_SESSION['name'] = $row['name'];
-                $_SESSION['surname'] = $row['surname'];
+                $_SESSION['username'] = $row['login'];
+                $_SESSION['name'] = $row['imie'];
+                $_SESSION['surname'] = $row['nazwisko'];
                 $_SESSION['hotline'] = sha1(lock); //cookie logowania
-                $_SESSION['ID_user'] = $row['ID_user'];
-                setcookie("hotline", 'online', time() + 900); //czas życia cookie
+                if (($_SESSION['username']=='k.szpond')||($_SESSION['username']=='p.szymczyk'))
+                {
+                    setcookie("hotline", 'online', time() + 99900); //czas życia cookie
+                }
+                else
+                {
+                    setcookie("hotline", 'online', time() + 900); //czas życia cookie
+                }
                 header('location: main.php');
             } else {
                 $_SESSION['error'] = '<div class="alert alert-danger">Niepoprawne hasło</div>';

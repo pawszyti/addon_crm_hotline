@@ -2,12 +2,19 @@
 session_start();
 if(isset($_SESSION['hotline']) && $_SESSION['hotline'] == sha1(lock) && isset($_COOKIE['hotline']))
 {
-setcookie("hotline",'online', time()+900);
 require_once ('config/config.php');
 $username = $_SESSION['username'];
 $name = $_SESSION['name'];
 $surname = $_SESSION['surname'];
 $limit = 0;
+    if (($username=='k.szpond')||($username=='p.szymczyk'))
+        {
+            setcookie("hotline", 'online', time() + 9900); //czas życia cookie
+        }
+    else
+        {
+            setcookie("hotline", 'online', time() + 900); //czas życia cookie
+        }
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +26,7 @@ $limit = 0;
     <link href="css/style.css" rel="stylesheet">
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap-theme.css" rel="stylesheet">
+    <link href="css/set1.css" rel="stylesheet">
     <script src="js/jquery-3.1.1.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/bootbox.min.js"></script>
@@ -27,14 +35,14 @@ $limit = 0;
 </head>
 <body>
 
+<div class="navbar navbar-default btn-variants navbar-fixed" role="navigation">
 
-<nav class="navbar navbar-default btn-variants navbar-fixed" role="navigation">
-<div style="text-align: center">
-<h2>Panel Hotline</h2>
+    <div style="text-align: center" class="col-lg-8 col-lg-offset-2 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+        <h2><b>Panel Hotline</b></h2> </div>
+  <div class="col-lg-1 col-lg-offset-1 col-md-2 col-md-offset-1 col-sm-2 col-sm-offset-1 col-sm-6 col-sm-offset-3 col-xs-4 col-xs-offset-4" ><a data-toggle="tooltip" data-placement="bottom" title="Zalogowany:<?php  echo "    ".$name." ".$surname; ?>" role="button" class="btn btn-default btn-sm " style="margin-top: 15px" href="logout.php">Wyloguj</a></div>
 </div>
 
 
-</nav>
 
 
 <div class="container">
@@ -42,30 +50,50 @@ $limit = 0;
     echo $_SESSION['alert2'];
     unset($_SESSION['alert2']);
     ?>
-    <form action='' method="post">
-<table class="tabela3">
-    <tr>
-        <th style="text-align: center">Imię</th>
-        <th style="text-align: center">Nazwisko</th>
-    </tr>
-    <tr>
-        <th><input type="text"  name="imie" size="40px"></th>
-        <th><input type="text"  name="nazwisko" size="40px"></th>
-    </tr>
-    <tr>
-        <th colspan="2"><button type="submit" class="btn btn-primary form-control">Wyszukaj</button> </th>
-    </tr>
-</table>
+    <div> <form action='' method="post">
+
+
+      <div class="col-lg-4">  <span class="input input--hoshi">			<section class="content">
+					<input class="input__field input__field--hoshi" type="text" id="input-4" name="imie" autocomplete="off"/>
+					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+						<span class="input__label-content input__label-content--hoshi">Imię</span>
+					</label>
+				</span>
+      </div>
+        <div class="col-lg-4"> <span class="input input--hoshi">
+					<input class="input__field input__field--hoshi" type="text" id="input-4" name="nazwisko" autocomplete="off" />
+					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+						<span class="input__label-content input__label-content--hoshi">Nazwisko</span>
+					</label>
+				</span>
+        </div>
+
+        <br /><div class="col-lg-4 col-lg-offset-0 col-md-3 col-md-offset-1 col-sm-4 col-xs-10 col-xs-offset-1""><button type="submit" class="btn btn-default form-control">Wyszukaj</button></div>
+
+
     </form>
 
+    </div>
 
-
+    <table class="table table-striped" cellspacing='0' style='text-align: center'>
+    <tr>
+        <th style="text-align: center">lp.</th>
+        <th style="text-align: center">Imię</th>
+        <th style="text-align: center">Nazwisko</th>
+        <th style="text-align: center">Jednostka Org.</th>
+        <th style="text-align: center">Czy aktywny</th>
+        <th style="text-align: center">Odblokuj</th>
+        <th style="text-align: center">Przepnij</th>
+    </tr>
 
     <?php
+
+
+
     if(isset($_POST['imie'])||($_POST['nazwisko'])){
 
         if(($_POST['imie']=="") && ($_POST['nazwisko']=="")){
-        $_SESSION['alert'] = '<div class="alert alert-danger">Nic nie wpisano.</div>';}
+        $_SESSION['alert'] = '<div class="alert alert-danger" style="margin-top: 30px">Nic nie wpisano.</div>';}
         else{
 
 
@@ -82,22 +110,12 @@ $limit = 0;
             $licznik = $ilosc;
 
             if ($ilosc<1){
-                $_SESSION['alert'] = '<div class="alert alert-danger">Nie znaleziono pasującego użytkownika w systemie.</div>';
+                $_SESSION['alert'] = '<div class="alert alert-danger" style="margin-top: 30px">Nie znaleziono pasującego użytkownika w systemie.</div>';
 
             }
             else
                 {
 
-                    echo" <table class=\"tabela2\" cellspacing='0'>
-            <tr>
-            <th style=\"text-align: center\">lp.</th>
-            <th style=\"text-align: center\">Imię</th>
-            <th style=\"text-align: center\">Nazwisko</th>
-            <th style=\"text-align: center\">Jednostka Org.</th>
-            <th style=\"text-align: center\">Czy aktywny</th>
-            <th style=\"text-align: center\">Odblokuj</th>
-            <th style=\"text-align: center\">Przepnij</th>
-              </tr>";
 
 
             for ($i = 0; $i < $ilosc; $i++) {
@@ -139,23 +157,87 @@ $limit = 0;
 
                 echo "<td><input type=submit class=\"btn btn-danger\" value='Odblokuj' onclick=\"bootbox.confirm('Czy chcesz odblokować użytkownika<b> ".$tablica['imie']." ".$tablica['nazwisko']."</b>  zmienić jego hasło na PESEL?', function(result){ if (result==true) {window.location.href='odblokuj.php?id=".$tablica['pesel']."'}; });\" class=\"myButton2\"></td>";
 
-                echo "<td><input type=submit class=\"btn btn-warning\" value='Przepnij' onclick=\"bootbox.confirm('Czy chcesz z listy usunąć użytkownika<b> ".$tablica['imie']." ".$tablica['nazwisko']."</b> i zmienić jego hasło na PESEL ?', function(result){ if (result==true) {window.location.href='del.php?id=".$tablica['pesel']."'}; });\" class=\"myButton2\"></td>";
+                echo "<td><input type=submit class=\"btn btn-warning\" value='Przepnij' data-toggle=\"modal\" class=\"myButton2\" data-target=\"#exampleModal\"></td>";
+
+
+
+
+
+        echo"        <div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\">
+    <div class=\"modal-dialog\" role=\"document\">
+        <div class=\"modal-content\">
+            <div class=\"modal-header\">
+                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>
+                <h4 id=\"exampleModalLabel\">Wybierz oddział docelowy</h4>
+            </div>
+            <div class=\"modal-body\">
+                <form action='".$login.".php'>
+               <select>
+                   <option>- -</option>
+                   <option>Ostrołęka</option>
+                   <option>Łomża</option>
+                   <option>Białystok</option>
+                   <option>Ostrów Mazowiecka</option>
+                   <option>Ełk</option>
+
+               </select>
+            </div>
+            <div class=\"modal-footer\">
+                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Anuluj</button>
+                <button type=\"submit\" class=\"btn btn-warning\">Przepnij</button>
+                                </form>
+            </div>
+        </div>
+    </div>
+</div>";
+
+
+
+
+
+
+
+
+
 
 
 
                 echo "</tr>";
-            }}
+            }
+
+                    if ($lp==0){
+                        $_SESSION['alert'] = '<div class="alert alert-danger" style="margin-top: 30px">Nie znaleziono pasującego użytkownika w systemie.</div>';
+
+                    }
+
+
+                }
         } else
             echo "error";
-    }}
+    }
 
+
+
+    }
+    else{
+        echo "<div class=\"alert alert-warning\" style='margin-top: 65px'>Aby wyświetlić liste wyszukaj pracowników</div>";
+    }
 
     ?>
 
 
 </table>
+<!-- data-whatever="@mdo"-->
+
+
+
+
+
+
+
+
     <?php
-    echo $_SESSION['alert'];
+    echo "<div>".$_SESSION['alert']."</div>";
     unset($_SESSION['alert']);
     }
     else
@@ -167,5 +249,59 @@ $limit = 0;
     //LOGOWANIE - SPRAWDZENIE - STOP
     ?>
 </div>
+
+<script src="js/classie.js"></script>
+<script>
+
+    $('#exampleModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var recipient = button.data('whatever') // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        modal.find('.modal-title').text('New message to ' + recipient)
+        modal.find('.modal-body input').val(recipient)
+    })
+
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+
+
+    $(function() {
+        // trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
+        if (!String.prototype.trim) {
+            (function() {
+                // Make sure we trim BOM and NBSP
+                var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+                String.prototype.trim = function() {
+                    return this.replace(rtrim, '');
+                };
+            })();
+        }
+
+        [].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+            // in case the input is already filled..
+            if( inputEl.value.trim() !== '' ) {
+                classie.add( inputEl.parentNode, 'input--filled' );
+            }
+
+            // events:
+            inputEl.addEventListener( 'focus', onInputFocus );
+            inputEl.addEventListener( 'blur', onInputBlur );
+        } );
+
+        function onInputFocus( ev ) {
+            classie.add( ev.target.parentNode, 'input--filled' );
+        }
+
+        function onInputBlur( ev ) {
+            if( ev.target.value.trim() === '' ) {
+                classie.remove( ev.target.parentNode, 'input--filled' );
+            }
+        }
+    })();
+</script>
 </body>
 </html>

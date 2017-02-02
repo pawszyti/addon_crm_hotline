@@ -30,10 +30,10 @@ require_once ('config/config.php');
 
             <form action="login.php" method="post">
                 <div class="form-group">
-                    Login: <input type="text" name="username" class="form-control" placeholder="Login">
+                    Login: <input type="text" name="username" class="form-control" placeholder="Login" autocomplete="off">
                 </div>
                 <div class="form-group">
-                    Hasło: <input type="password" name="password" class="form-control" placeholder="Hasło">
+                    Hasło: <input type="password" name="password" class="form-control" placeholder="Hasło" autocomplete="off">
                 </div>
                 <button type="submit" class="btn btn-primary">Zaloguj</button>
         </div>
