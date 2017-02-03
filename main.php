@@ -38,7 +38,10 @@ $limit = 0;
 <div class="navbar navbar-default btn-variants navbar-fixed" role="navigation">
 
     <div style="text-align: center" class="col-lg-8 col-lg-offset-2 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
-        <h2><b>Panel Hotline</b></h2> </div>
+
+      <h2 class="font_logo ">PANEL HOTLINE</b></h2>
+
+    </div>
   <div class="col-lg-1 col-lg-offset-1 col-md-2 col-md-offset-1 col-sm-2 col-sm-offset-1 col-sm-6 col-sm-offset-3 col-xs-4 col-xs-offset-4" ><a data-toggle="tooltip" data-placement="bottom" title="Zalogowany:<?php  echo "    ".$name." ".$surname; ?>" role="button" class="btn btn-default btn-sm " style="margin-top: 15px" href="logout.php">Wyloguj</a></div>
 </div>
 
@@ -104,7 +107,7 @@ $limit = 0;
         $imie = $_POST['imie'];
         $nazwisko = $_POST['nazwisko'];
         $zapytanie = "SELECT *  FROM jednostki_organizacyjne_ewidencja, uzytkownicy_ewidencja 
-                      WHERE jednostki_organizacyjne_ewidencja.id = uzytkownicy_ewidencja.id_jednostki_organizacyjnej AND nazwisko LIKE '%$nazwisko%' AND imie LIKE '%$imie%'" ;
+                      WHERE jednostki_organizacyjne_ewidencja.id = uzytkownicy_ewidencja.id_jednostki_organizacyjnej AND nazwisko LIKE '$nazwisko%' AND imie LIKE '$imie%'" ;
         if ($wynik = $db2->query($zapytanie)) {
             $ilosc = $wynik->num_rows;
             $licznik = $ilosc;
