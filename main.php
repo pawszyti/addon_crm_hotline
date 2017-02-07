@@ -26,10 +26,12 @@ $limit = 0;
     <link href="css/style.css" rel="stylesheet">
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap-theme.css" rel="stylesheet">
-    <link href="css/set1.css" rel="stylesheet">
+    <link href="css/set1.css" rel="stylesheet"> <!--plugin css do input text -->
+    <link href="css/bootstrap-select.min.css" rel="stylesheet"> <!--plugin css do input select -->
     <script src="js/jquery-3.1.1.js"></script>
     <script src="js/bootstrap.js"></script>
-    <script src="js/bootbox.min.js"></script>
+    <script src="js/bootbox.min.js"></script> <!--plugin js do okien dialogowych (potwierdzenie) -->
+    <script src="js/bootstrap-select.min.js"></script> <!--plugin js do input select -->
 
 
 </head>
@@ -87,6 +89,7 @@ $limit = 0;
         <th style="text-align: center">Czy aktywny</th>
         <th style="text-align: center">Odblokuj</th>
         <th style="text-align: center">Przepnij</th>
+        <th style="text-align: center">Modyfikuj<br /></th>
     </tr>
 
     <?php
@@ -132,9 +135,8 @@ $limit = 0;
                 if ($pracuje == 0) {
                     continue;
                 }
-                $limit = $limit+1;
-                if($limit == 26)
-                {
+                $limit = $limit + 1;
+                if ($limit == 26) {
                     $_SESSION['alert'] = '<div class="alert alert-danger">Znaleziono więcej niż 25 wyników, zawęź kryteria wyszukiwania.</div>';
                     break;
 
@@ -158,15 +160,15 @@ $limit = 0;
                 echo "</td>";
 
 
-                echo "<td><input type=submit class=\"btn btn-danger\" value='Odblokuj' onclick=\"bootbox.confirm('Czy chcesz odblokować użytkownika<b> ".$tablica['imie']." ".$tablica['nazwisko']."</b>  zmienić jego hasło na PESEL?', function(result){ if (result==true) {window.location.href='odblokuj.php?id=".$tablica['pesel']."'}; });\" class=\"myButton2\"></td>";
+                echo "<td><input type=submit class=\"btn btn-danger\" value='Odblokuj' onclick=\"bootbox.confirm('Czy chcesz odblokować użytkownika<b> " . $tablica['imie'] . " " . $tablica['nazwisko'] . "</b>  zmienić jego hasło na PESEL?', function(result){ if (result==true) {window.location.href='odblokuj.php?id=" . $tablica['pesel'] . "'}; });\" class=\"myButton2\"></td>";
 
-                echo "<td><input type=submit class=\"btn btn-warning\" value='Przepnij' data-toggle=\"modal\" class=\"myButton2\" data-target=\"#exampleModal\"></td>";
+                echo "<td><input type=submit class=\"btn btn-warning\" value='Przepnij' data-toggle=\"modal\" class=\"myButton2\" data-target=\"#exampleModal" . $tablica[id] . "\">
+                
+                <td><input type=submit class=\"btn btn-success\" value='Modyfikuj' data-toggle=\"modal\" class=\"myButton2\" data-target=\"#exampleModal" . $tablica[id] . "\">
+                </td>";
 
 
-
-
-
-        echo"        <div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\">
+                echo "        <div class=\"modal fade\" id=\"exampleModal" . $tablica[id] . "\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\">
     <div class=\"modal-dialog\" role=\"document\">
         <div class=\"modal-content\">
             <div class=\"modal-header\">
@@ -174,34 +176,53 @@ $limit = 0;
                 <h4 id=\"exampleModalLabel\">Wybierz oddział docelowy</h4>
             </div>
             <div class=\"modal-body\">
-                <form action='".$login.".php'>
-               <select>
-                   <option>- -</option>
-                   <option>Ostrołęka</option>
-                   <option>Łomża</option>
-                   <option>Białystok</option>
-                   <option>Ostrów Mazowiecka</option>
-                   <option>Ełk</option>
+                <form action=\"przepnij.php\" method='post' name='" . $tablica[id] . "'>  
+                       
+               <select name='oddzial' class=\"selectpicker\" data-live-search=\"true\">
+               <option value ='0'>- - wybierz oddzial- -</option>
+               ";
 
-               </select>
+
+                $zapytanie_oddzialy = "SELECT * FROM jednostki_organizacyjne_ewidencja WHERE ((id<799 OR id>1399) AND (id<16999 OR id=20000)) AND (status=1) AND (nazwa!='a') ORDER BY nazwa ";
+                $wynik_oddzialy = $db2->query($zapytanie_oddzialy);
+               $ilosc_oddzialy = $wynik_oddzialy->num_rows;
+                for ($b = 0; $b < $ilosc_oddzialy; $b++) {
+                $tablica_oddzialy = $wynik_oddzialy->fetch_assoc();
+
+
+        echo " 
+                <option value = '".$tablica_oddzialy[id]."' > ".$tablica_oddzialy[nazwa]." </option > ";
+               }
+
+echo " </select > <select name='stanowisko' class=\"selectpicker\" data-live-search=\"true\">
+                <option value ='0'>- - wybierz stanowisko- -</option>
+
+ ";
+  $zapytanie_stanowiska = "SELECT * FROM stanowiska_ewidencja WHERE status=1 AND ID!=215 AND nazwa!='ppppp' AND usunieto=0 ORDER BY nazwa ";
+                $wynik_stanowiska = $db2->query($zapytanie_stanowiska);
+               $ilosc_stanowiska = $wynik_stanowiska->num_rows;
+                for ($c = 0; $c < $ilosc_stanowiska; $c++) {
+                    $tablica_stanowiska = $wynik_stanowiska->fetch_assoc();
+
+                    echo " 
+                <option value = '".$tablica_stanowiska[id]."' > ".$tablica_stanowiska[nazwa]." </option >
+               ";
+
+                }
+
+
+echo "<select />
+<input type='hidden' value='".$tablica[id]."' name='id'>
+               
             </div>
             <div class=\"modal-footer\">
                 <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Anuluj</button>
                 <button type=\"submit\" class=\"btn btn-warning\">Przepnij</button>
-                                </form>
+                </form>
             </div>
         </div>
     </div>
 </div>";
-
-
-
-
-
-
-
-
-
 
 
 
@@ -256,15 +277,17 @@ $limit = 0;
 <script src="js/classie.js"></script>
 <script>
 
+
+
     $('#exampleModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var recipient = button.data('whatever') // Extract info from data-* attributes
+       var button = $(event.relatedTarget) // Button that triggered the modal
+       var recipient = button.data('whatever') // Extract info from data-* attributes
         // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-        var modal = $(this)
-        modal.find('.modal-title').text('New message to ' + recipient)
-        modal.find('.modal-body input').val(recipient)
-    })
+       var modal = $(this)
+       modal.find('.modal-title').text('New message to ' + recipient)
+       modal.find('.modal-body input').val(recipient)
+   })
 
 
     $(function () {
