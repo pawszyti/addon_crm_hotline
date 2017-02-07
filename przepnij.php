@@ -1,4 +1,6 @@
 <?php
-echo $_POST['id'];
+echo "ID ".$_POST['id'];
 echo "<br />";
-echo $_POST['selekt'];
+echo $_POST['oddzial'];
+echo "<br />";
+echo $_POST['stanowisko'];

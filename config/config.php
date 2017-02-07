@@ -21,6 +21,10 @@ $db2_pass = 'pawel098!';
 @ $db2 = new mysqli($db2_host,$db2_user,$db2_pass,$db2_name);
 @ $db2_hr = new mysqli($db2_host,$db2_user,$db2_pass,$db2_name_hr);
 
+
+
+
+
 if (mysqli_connect_errno()) {
     echo "Error: ".$db2->connect_errno;
     exit;

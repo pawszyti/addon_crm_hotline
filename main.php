@@ -164,7 +164,7 @@ $limit = 0;
 
                 echo "<td><input type=submit class=\"btn btn-warning\" value='Przepnij' data-toggle=\"modal\" class=\"myButton2\" data-target=\"#exampleModal" . $tablica[id] . "\">
                 
-                <td><input type=submit class=\"btn btn-success\" value='Modyfikuj' data-toggle=\"modal\" class=\"myButton2\" data-target=\"#exampleModal" . $tablica[id] . "\">
+                <td><a class=\"btn btn-success \" href='modyfikuj.php?id=".$tablica[id]."' \">Modyfikuj</a>
                 </td>";
 
 
@@ -178,14 +178,14 @@ $limit = 0;
             <div class=\"modal-body\">
                 <form action=\"przepnij.php\" method='post' name='" . $tablica[id] . "'>  
                        
-               <select name='oddzial' class=\"selectpicker\" data-live-search=\"true\">
+               <select name='oddzial'>
                <option value ='0'>- - wybierz oddzial- -</option>
                ";
 
 
                 $zapytanie_oddzialy = "SELECT * FROM jednostki_organizacyjne_ewidencja WHERE ((id<799 OR id>1399) AND (id<16999 OR id=20000)) AND (status=1) AND (nazwa!='a') ORDER BY nazwa ";
                 $wynik_oddzialy = $db2->query($zapytanie_oddzialy);
-               $ilosc_oddzialy = $wynik_oddzialy->num_rows;
+                $ilosc_oddzialy = $wynik_oddzialy->num_rows;
                 for ($b = 0; $b < $ilosc_oddzialy; $b++) {
                 $tablica_oddzialy = $wynik_oddzialy->fetch_assoc();
 
@@ -194,8 +194,8 @@ $limit = 0;
                 <option value = '".$tablica_oddzialy[id]."' > ".$tablica_oddzialy[nazwa]." </option > ";
                }
 
-echo " </select > <select name='stanowisko' class=\"selectpicker\" data-live-search=\"true\">
-                <option value ='0'>- - wybierz stanowisko- -</option>
+echo " </select > <select name='stanowisko' class='selectpicker' data-live-search='true'>
+                <option value ='0' >- - wybierz stanowisko- -</option>
 
  ";
   $zapytanie_stanowiska = "SELECT * FROM stanowiska_ewidencja WHERE status=1 AND ID!=215 AND nazwa!='ppppp' AND usunieto=0 ORDER BY nazwa ";
