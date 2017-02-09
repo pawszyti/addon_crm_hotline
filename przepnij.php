@@ -4,9 +4,11 @@ $id = $_POST['id'];
 $oddzial = $_POST['oddzial'];
 $stanowisko = $_POST['stanowisko'];
 $one = 1;
+$zapytanie_13 = "SELECT * FROM jednostki_organizacyjne_ewidencja WHERE id LIKE '$oddzial'";
+$zapytanie_13_stanowisko = "SELECT * FROM stanowiska_ewidencja WHERE id LIKE '$stanowisko'";
 
 
-        $zapytanie_stanowiska = "SELECT *  FROM pracownicy_stanowiska WHERE id_pracownika='$id' AND status=1";
+       /* $zapytanie_stanowiska = "SELECT *  FROM pracownicy_stanowiska WHERE id_pracownika='$id' AND status=1";
         $wynik_stanowiska = $db2_hr->query($zapytanie_stanowiska);
         $ilosc_stanowiska = $wynik_stanowiska->num_rows;
         for ($i = 0; $i < $ilosc_stanowiska; $i++)
@@ -34,12 +36,21 @@ $one = 1;
          $insert_powiazanie = "INSERT INTO `pracownicy_stanowiska` (`id`,`id_pracownika`,`id_jednostki_organizacyjnej`,`id_stanowiska`,`czy_glowne`,`status`) VALUES (NULL,'$id', '$oddzial','$stanowisko','$one','$one')";
          $db2_hr->query($insert_powiazanie);
         }
+*/
+$wynik_13 = $db13->query($zapytanie_13);
+$tablica_13 = $wynik_13->fetch_assoc();
+$oddzial_crm1 = $tablica_13['crm1_oddzialy'];
+$dzial_crm1 = $tablica_13['crm1_dzialy'];
+
+$wynik_13_stanowisko = $db13->query($zapytanie_13_stanowisko);
+$tablica_13_stanowisko = $wynik_13_stanowisko->fetch_assoc();
+$stanowisko_crm1 = $tablica_13_stanowisko['crm1_stanowisko'];
+
+$update_capital ="UPDATE cash_users SET id_oddzialu='$oddzial_crm1', id_dzialu='$dzial_crm1', stanowisko='$stanowisko_crm1' WHERE user_id='$id'";
+$db2_capital->query($update_capital);
 
 
+$_SESSION['alert2'] = '<div class="alert alert-success">Użytkownik został pomyślnie przpięty w CRM1 oraz CRM2.</div>';
+header('location: main.php');
+exit();
 
-
-echo "ID ".$_POST['id'];
-echo "<br />";
-echo $_POST['oddzial'];
-echo "<br />";
-echo $_POST['stanowisko'];

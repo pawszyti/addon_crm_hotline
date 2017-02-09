@@ -268,7 +268,7 @@ echo "<b><h5>Obecne stanowiska:</h5></b>";
     }
     else
     {
-        echo "<div class=\"alert alert-warning\" style='margin-top: 65px'>Aby wyświetlić liste wyszukaj pracowników</div>";
+        echo "<div class=\"alert alert-warning\" style='margin-top: 65px'>Aby wyświetlić liste, wyszukaj pracowników</div>";
     }
     ?>
     </table>

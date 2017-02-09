@@ -78,7 +78,6 @@ $licznik = 1;
         <th style="text-align: center">Stanowisko</th>
         <th style="text-align: center">Usuń stanowisko</th>
         <th style="text-align: center">Czy główne</th>
-        <th style="text-align: center">Ustaw główne</th>
 
     </tr>
 
@@ -105,22 +104,20 @@ $licznik = 1;
             $tablica_stanowisko = $wynik_stanowisko->fetch_assoc();
 
 
-            echo "<td>".$tablica_stanowisko['nazwa']."</td>
+            echo "<td>".$tablica_stanowisko['nazwa']."</td>";
 
-
-<td><input type=submit class=\"btn btn-danger\" value='Usuń' onclick=\"bootbox.confirm('Czy chcesz usunąć stanowisko<b> " . $tablica_jednostka['nazwa'] . " | " . $tablica_stanowisko['nazwa'] . "</b>  ?', function(result){ if (result==true) {window.location.href='odblokuj.php?id=" . $tablica['pesel'] . "'}; });\" class=\"myButton2\"></td>
-<td>";
 if ($tablica_stanowiska[czy_glowne]==1){
-    echo "<img src=\"img/tak.png\" width=\"25px\"> <td></td>";
+
+echo "<td><input disabled type=submit class=\"btn btn-danger disabled\" value='Usuń' onclick=\"bootbox.confirm('Czy chcesz usunąć stanowisko<b> " . $tablica_jednostka['nazwa'] . " | " . $tablica_stanowisko['nazwa'] . "</b>  ?', function(result){ if (result==true) {window.location.href='odblokuj.php?id=" . $tablica['pesel'] . "'}; });\" class=\"myButton2\"></td>
+<td>";
+    echo "<img src=\"img/tak.png\" width=\"25px\"> </td>";
 }
 else{
-
-    echo "<img src=\"img/nie.png\" width=\"25px\">";
-
+            echo " <td><input type=submit class=\"btn btn-danger\" value='Usuń' onclick=\"bootbox.confirm('Czy chcesz usunąć stanowisko<b> " . $tablica_jednostka['nazwa'] . " | " . $tablica_stanowisko['nazwa'] . "</b>  ?', function(result){ if (result==true) {window.location.href='odblokuj.php?id=" . $tablica['pesel'] . "'}; });\" class=\"myButton2\"></td>
+  <td> <input type=submit class=\"btn btn-info\" value='Ustaw' onclick=\"bootbox.confirm('Czy chcesz ustawić stanowisko <b> " . $tablica_jednostka['nazwa'] . " | " . $tablica_stanowisko['nazwa'] . "</b>  jako główne ?', function(result){ if (result==true) {window.location.href='odblokuj.php?id=" . $tablica['pesel'] . "'}; });\" class=\"myButton2\"></td>";
 
 echo"
-</td>
-<td><input type=submit class=\"btn btn-info\" value='Ustaw' onclick=\"bootbox.confirm('Czy chcesz ustawić stanowisko <b> " . $tablica_jednostka['nazwa'] . " | " . $tablica_stanowisko['nazwa'] . "</b>  jako główne ?', function(result){ if (result==true) {window.location.href='odblokuj.php?id=" . $tablica['pesel'] . "'}; });\" class=\"myButton2\"></td>
+
 ";
 }
 
