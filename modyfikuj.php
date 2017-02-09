@@ -20,6 +20,7 @@ $zapytanie = "SELECT *  FROM uzytkownicy_ewidencja WHERE id='$id'" ;
 if ($wynik = $db2->query($zapytanie)) {
 $ilosc = $wynik->num_rows;
 $tablica = $wynik->fetch_assoc();
+$licznik = 1;
 ?>
 
 <!DOCTYPE html>
@@ -65,7 +66,7 @@ $tablica = $wynik->fetch_assoc();
     ?>
 <div class="alert alert-info">
     <?php
-    echo "<h4>Modyfikujesz pracownika: <b>".$tablica[imie]." ".$tablica[nazwisko]."<h4 /><b />";
+    echo "<h4>Modyfikujesz stanowiska pracownika: <b>".$tablica[imie]." ".$tablica[nazwisko]."<h4 /></b>";
     ?>
 
 </div>
@@ -88,7 +89,8 @@ $tablica = $wynik->fetch_assoc();
         for ($i = 0; $i < $ilosc_stanowiska; $i++) {
             $tablica_stanowiska = $wynik_stanowiska->fetch_assoc();
 
-            echo "<tr><td>1</td>";
+            echo "<tr><td>".$licznik.".</td>";
+            $licznik++;
             $zapytanie_jednostka = "SELECT * FROM jednostki_organizacyjne_ewidencja WHERE id='$tablica_stanowiska[id_jednostki_organizacyjnej]'";
             $wynik_jednostka = $db2->query($zapytanie_jednostka);
             $ilosc_jednostka = $wynik_jednostka->num_rows;
@@ -106,12 +108,7 @@ $tablica = $wynik->fetch_assoc();
             echo "<td>".$tablica_stanowisko['nazwa']."</td>
 
 
-
-
-
-
-
-<td><input type=submit class=\"btn btn-danger\" value='Usuń' onclick=\"bootbox.confirm('Czy chcesz odblokować użytkownika<b> " . $tablica['imie'] . " " . $tablica['nazwisko'] . "</b>  zmienić jego hasło na PESEL?', function(result){ if (result==true) {window.location.href='odblokuj.php?id=" . $tablica['pesel'] . "'}; });\" class=\"myButton2\"></td>
+<td><input type=submit class=\"btn btn-danger\" value='Usuń' onclick=\"bootbox.confirm('Czy chcesz usunąć stanowisko<b> " . $tablica_jednostka['nazwa'] . " | " . $tablica_stanowisko['nazwa'] . "</b>  ?', function(result){ if (result==true) {window.location.href='odblokuj.php?id=" . $tablica['pesel'] . "'}; });\" class=\"myButton2\"></td>
 <td>";
 if ($tablica_stanowiska[czy_glowne]==1){
     echo "<img src=\"img/tak.png\" width=\"25px\"> <td></td>";
@@ -123,7 +120,7 @@ else{
 
 echo"
 </td>
-<td><input type=submit class=\"btn btn-info\" value='Ustaw' onclick=\"bootbox.confirm('Czy chcesz odblokować użytkownika<b> " . $tablica['imie'] . " " . $tablica['nazwisko'] . "</b>  zmienić jego hasło na PESEL?', function(result){ if (result==true) {window.location.href='odblokuj.php?id=" . $tablica['pesel'] . "'}; });\" class=\"myButton2\"></td>
+<td><input type=submit class=\"btn btn-info\" value='Ustaw' onclick=\"bootbox.confirm('Czy chcesz ustawić stanowisko <b> " . $tablica_jednostka['nazwa'] . " | " . $tablica_stanowisko['nazwa'] . "</b>  jako główne ?', function(result){ if (result==true) {window.location.href='odblokuj.php?id=" . $tablica['pesel'] . "'}; });\" class=\"myButton2\"></td>
 ";
 }
 
