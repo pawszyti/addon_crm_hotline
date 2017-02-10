@@ -8,14 +8,14 @@ $zapytanie_13 = "SELECT * FROM jednostki_organizacyjne_ewidencja WHERE id LIKE '
 $zapytanie_13_stanowisko = "SELECT * FROM stanowiska_ewidencja WHERE id LIKE '$stanowisko'";
 
 
-       /* $zapytanie_stanowiska = "SELECT *  FROM pracownicy_stanowiska WHERE id_pracownika='$id' AND status=1";
+       $zapytanie_stanowiska = "SELECT *  FROM pracownicy_stanowiska WHERE id_pracownika='$id' AND status=1";
         $wynik_stanowiska = $db2_hr->query($zapytanie_stanowiska);
         $ilosc_stanowiska = $wynik_stanowiska->num_rows;
         for ($i = 0; $i < $ilosc_stanowiska; $i++)
         {
             $tablica_stanowiska = $wynik_stanowiska->fetch_assoc();
             $id_ps = $tablica_stanowiska[id];
-            $update_stanowiska = "UPDATE pracownicy_stanowiska SET status=0 WHERE id LIKE '$id_ps'";
+            $update_stanowiska = "UPDATE pracownicy_stanowiska SET status=0, czy_glowne=0 WHERE id LIKE '$id_ps'";
             $db2_hr->query($update_stanowiska);
         }
 
@@ -36,7 +36,6 @@ $zapytanie_13_stanowisko = "SELECT * FROM stanowiska_ewidencja WHERE id LIKE '$s
          $insert_powiazanie = "INSERT INTO `pracownicy_stanowiska` (`id`,`id_pracownika`,`id_jednostki_organizacyjnej`,`id_stanowiska`,`czy_glowne`,`status`) VALUES (NULL,'$id', '$oddzial','$stanowisko','$one','$one')";
          $db2_hr->query($insert_powiazanie);
         }
-*/
 $wynik_13 = $db13->query($zapytanie_13);
 $tablica_13 = $wynik_13->fetch_assoc();
 $oddzial_crm1 = $tablica_13['crm1_oddzialy'];

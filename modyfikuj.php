@@ -32,12 +32,9 @@ $licznik = 1;
     <link href="css/style.css" rel="stylesheet">
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap-theme.css" rel="stylesheet">
-    <link href="css/set1.css" rel="stylesheet"> <!--plugin css do input text -->
-    <link href="css/bootstrap-select.min.css" rel="stylesheet"> <!--plugin css do input select -->
     <script src="js/jquery-3.1.1.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/bootbox.min.js"></script> <!--plugin js do okien dialogowych (potwierdzenie) -->
-    <script src="js/bootstrap-select.min.js"></script> <!--plugin js do input select -->
 
 
 </head>
@@ -60,17 +57,18 @@ $licznik = 1;
 </div>
 
 <div class="container">
-    <?php
-    echo $_SESSION['alert2'];
-    unset($_SESSION['alert2']);
-    ?>
+
 <div class="alert alert-info">
     <?php
     echo "<h4>Modyfikujesz stanowiska pracownika: <b>".$tablica[imie]." ".$tablica[nazwisko]."<h4 /></b>";
     ?>
 
 </div>
-<button class="btn btn-default col-lg-4 col-lg-offset-4" style="margin-bottom: 15px">Dodaj stanowisko</button>
+    <?php
+    echo $_SESSION['alert2'];
+    unset($_SESSION['alert2']);
+    ?>
+<button class="btn btn-default col-lg-4 col-lg-offset-4 myButton2" style="margin-bottom: 15px" data-toggle="modal" data-target="#exampleModal">Dodaj stanowisko</button>
     <table class="table table-striped" cellspacing='0' style='text-align: center'>
     <tr>
         <th style="text-align: center">lp.</th>
@@ -113,8 +111,8 @@ echo "<td><input disabled type=submit class=\"btn btn-danger disabled\" value='U
     echo "<img src=\"img/tak.png\" width=\"25px\"> </td>";
 }
 else{
-            echo " <td><input type=submit class=\"btn btn-danger\" value='Usuń' onclick=\"bootbox.confirm('Czy chcesz usunąć stanowisko<b> " . $tablica_jednostka['nazwa'] . " | " . $tablica_stanowisko['nazwa'] . "</b>  ?', function(result){ if (result==true) {window.location.href='odblokuj.php?id=" . $tablica['pesel'] . "'}; });\" class=\"myButton2\"></td>
-  <td> <input type=submit class=\"btn btn-info\" value='Ustaw' onclick=\"bootbox.confirm('Czy chcesz ustawić stanowisko <b> " . $tablica_jednostka['nazwa'] . " | " . $tablica_stanowisko['nazwa'] . "</b>  jako główne ?', function(result){ if (result==true) {window.location.href='odblokuj.php?id=" . $tablica['pesel'] . "'}; });\" class=\"myButton2\"></td>";
+            echo " <td><input type=submit class=\"btn btn-danger\" value='Usuń' onclick=\"bootbox.confirm('Czy chcesz usunąć stanowisko<b> " . $tablica_jednostka['nazwa'] . " | " . $tablica_stanowisko['nazwa'] . "</b>  ?', function(result){ if (result==true) {window.location.href='modyfikuj/usun_stanowisko.php?id=" . $tablica_stanowiska['id'] . "&id_pracownika=".$id."'}; });\" class=\"myButton2\"></td>
+  <td> <input type=submit class=\"btn btn-info\" value='Ustaw' onclick=\"bootbox.confirm('Czy chcesz ustawić stanowisko <b> " . $tablica_jednostka['nazwa'] . " | " . $tablica_stanowisko['nazwa'] . "</b>  jako główne ?', function(result){ if (result==true) {window.location.href='modyfikuj/ustaw_glowne.php?id=" . $tablica_stanowiska['id'] . "&id_pracownika=".$id. "'}; });\" class=\"myButton2\"></td>";
 
 echo"
 
@@ -136,6 +134,8 @@ echo"
 
 
     <?php
+    $_SESSION[pracownik]=$tablica[id];
+
     echo "<div>".$_SESSION['alert']."</div>";
     unset($_SESSION['alert']);
     }
@@ -148,6 +148,80 @@ echo"
     //LOGOWANIE - SPRAWDZENIE - STOP
     ?>
 </div>
+
+
+
+
+
+<?php
+// **** okno dialogowe - start ****
+echo "<div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\">
+                                        <div class=\"modal-dialog\" role=\"document\">
+                                             <div class=\"modal-content\">
+                                                  <div class=\"modal-header\">
+                                                     <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>
+                                                     <h4 id=\"exampleModalLabel\">Aby dodać, wybierz oddział oraz stanowisko: <br /></h4><h4><b>".$tablica_hr[imie]." ".$tablica_hr[nazwisko]."</b></h4>
+
+                                                   </div>
+                                                   <div class=\"modal-body\">";
+
+
+
+
+echo " 
+                                                     <form action=\"modyfikuj/dodaj_stanowisko.php\" method='post' name='" . $tablica[id] . "'>";
+// **** select oddzialy start ****
+echo "
+                                                     <select name='oddzial' class='form-control'>
+                                                     <option value ='0'>- - wybierz oddzial- -</option>";
+
+$zapytanie_oddzialy = "SELECT * FROM jednostki_organizacyjne_ewidencja WHERE ((id<799 OR id>1399) AND (id<16999 OR id=20000)) AND (status=1) AND (nazwa!='a') ORDER BY nazwa ";
+$wynik_oddzialy = $db2->query($zapytanie_oddzialy);
+$ilosc_oddzialy = $wynik_oddzialy->num_rows;
+for ($b = 0; $b < $ilosc_oddzialy; $b++)
+{
+    $tablica_oddzialy = $wynik_oddzialy->fetch_assoc();
+    echo " 
+                                                            <option value = '".$tablica_oddzialy[id]."' > ".$tablica_oddzialy[nazwa]." </option > ";
+}
+
+echo " </select > <br />
+<!--// **** select oddzialy end **** -->
+ 
+<!--// // **** select stanowiska start **** -->
+                                                        <select name='stanowisko' class='form-control'>
+                                                        <option value ='0' >- - wybierz stanowisko- -</option>";
+
+$zapytanie_stanowiska = "SELECT * FROM stanowiska_ewidencja WHERE status=1 AND ID!=215 AND nazwa!='ppppp' AND usunieto=0 ORDER BY nazwa ";
+$wynik_stanowiska = $db2->query($zapytanie_stanowiska);
+$ilosc_stanowiska = $wynik_stanowiska->num_rows;
+for ($c = 0; $c < $ilosc_stanowiska; $c++)
+{
+    $tablica_stanowiska = $wynik_stanowiska->fetch_assoc();
+    echo " 
+                                                            <option value = '".$tablica_stanowiska[id]."' > ".$tablica_stanowiska[nazwa]." </option >";
+}
+echo "<select />
+<!-- // **** select stanowiska end **** -->
+                                                        <input type='hidden' value='".$tablica[id]."' name='id'>
+               
+                                                       </div>
+                                                  <div class=\"modal-footer\">
+                                                  <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Anuluj</button>
+                                                  <button type=\"submit\" class=\"btn btn-success\">Dodaj</button>
+                                                  </form>
+                                            </div>
+                                      </div>
+                                </div>
+                             </div>";
+// **** okno dialogowe end ****
+?>
+
+
+
+
+
+
 
 <script src="js/classie.js"></script>
 <script>
