@@ -59,6 +59,9 @@ if ($result = $db13->query(sprintf("SELECT * FROM hotline_users WHERE login='%s'
         header('location: index.php');
     }
 }
-$db13->close();
 $db2->close();
+$db13->close();
+$db2_hr->close();
+$db2_capital->close();
+exit();
 

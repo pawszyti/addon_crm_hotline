@@ -8,6 +8,12 @@ $stanowisko = $_POST['stanowisko'];
 $one = 1;
 $zero = 0;
 
+if (($oddzial == 0) || ($stanowisko == 0)){
+    $_SESSION['alert2'] = '<div class="alert alert-danger">Nie wybrano stanowiska lub oddziału docelowego</div>';
+    header('location: ../modyfikuj.php?id='.$id);
+    exit();
+}
+
 $zapytanie_powiazanie = "SELECT *  FROM pracownicy_stanowiska WHERE id_pracownika='$id' AND id_jednostki_organizacyjnej='$oddzial' AND id_stanowiska='$stanowisko'";
 $wynik_powiazanie = $db2_hr->query($zapytanie_powiazanie);
 $ilosc_powiazanie = $wynik_powiazanie->num_rows;
@@ -25,3 +31,8 @@ else
 
 $_SESSION['alert2'] = '<div class="alert alert-success">Stanowisko zostało pomyślnie dodane.</div>';
 header('location: ../modyfikuj.php?id='.$id);
+$db2->close();
+$db13->close();
+$db2_hr->close();
+$db2_capital->close();
+exit();

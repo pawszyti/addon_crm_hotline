@@ -334,7 +334,12 @@ else
         }
     })();
 </script>
-
+<?php
+$db2->close();
+$db13->close();
+$db2_hr->close();
+$db2_capital->close();
+?>
 
 </body>
 </html>
