@@ -86,7 +86,9 @@ $limit = 0;
         <th style="text-align: center">Czy aktywny</th>
         <th style="text-align: center">Odblokuj</th>
         <th style="text-align: center">Przepnij</th>
-        <th style="text-align: center">Modyfikuj<br /></th>
+        <th style="text-align: center">Modyfikuj</th>
+        <th style="text-align: center">Domena</th>
+
     </tr>
 
     <?php
@@ -121,6 +123,8 @@ $limit = 0;
                         $wynik_hr = $db2_hr->query($zapytanie_hr);
                         $tablica_hr = $wynik_hr->fetch_assoc();
                         $pracuje = $tablica_hr['czy_pracuje'];
+                        $login = str_replace(".", "", $tablica_hr['login']);
+
 
                         if ($pracuje == 0)
                         {
@@ -155,6 +159,8 @@ $limit = 0;
                             echo "<td><input type=submit class=\"btn btn-danger\" value='Odblokuj' onclick=\"bootbox.confirm('Czy chcesz odblokować użytkownika<b> " . $tablica['imie'] . " " . $tablica['nazwisko'] . "</b>  i zmienić hasło na PESEL?', function(result){ if (result==true) {window.location.href='odblokuj.php?id=" . $tablica['pesel'] . "'}; });\" class=\"myButton2\"></td>";
                             echo "<td><input type=submit class=\"btn btn-warning\" value='Przepnij' data-toggle=\"modal\" class=\"myButton2\" data-target=\"#exampleModal" . $tablica[id] . "\">
                             <td><a class=\"btn btn-success \" href='modyfikuj.php?id=".$tablica[id]."' \">Modyfikuj</a>
+                            </td>
+                            <td><input type=submit class=\"btn btn-info\" value='Zmień hasło' onclick=\"bootbox . confirm('Czy chcesz zmienić hasło domenowe dla użytkownia<b> " . $tablica['imie'] . " " . $tablica['nazwisko'] . "</b>  na Capital1?', function (result){ if (result == true) { window . location . href = 'sambapass.php?login=" . $login ."'};});\" class=\"myButton2\"></td>
                             </td>";
 
 // **** okno dialogowe - start ****
