@@ -10,7 +10,6 @@ require_once ('config/config.php');
 $username = $_POST['username'];
 $password = $_POST['password'];
 $username = htmlentities($username, ENT_QUOTES, "UTF-8");//dodawanie encji
-define('ZIARNO_MD5',md5('pswd55tughrtrtjgd%&$754'));
 $pass = md5(ZIARNO_MD5.md5($password).ZIARNO_MD5);
 
 if ($result = $db13->query(sprintf("SELECT * FROM hotline_users WHERE login='%s'",
