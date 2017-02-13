@@ -2,8 +2,6 @@
 session_start();
 require('config/config.php');
 $pesel = $_GET['id'];
-define('ZIARNO_MD5',md5('pswd55tughrtrtjgd%&$754'));
-
 $pass = md5(ZIARNO_MD5.md5($pesel).ZIARNO_MD5); //haszowanie hasła do crm
 
 $update = "UPDATE uzytkownicy_ewidencja SET status=1, haslo='$pass' WHERE pesel LIKE '$pesel'";
