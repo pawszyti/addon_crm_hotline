@@ -6,12 +6,12 @@ $oddzial = $_POST['oddzial'];
 $stanowisko = $_POST['stanowisko'];
 $one = 1;
 
-if (($oddzial == 0) || ($stanowisko == 0)){
+if (($oddzial == 0) || ($stanowisko == 0))
+{
     $_SESSION['alert2'] = '<div class="alert alert-danger">Nie wybrano stanowiska lub oddziału docelowego</div>';
     header('location: main.php');
     exit();
 }
-
 
 
 $zapytanie_13 = "SELECT * FROM jednostki_organizacyjne_ewidencja WHERE id LIKE '$oddzial'";
@@ -26,7 +26,7 @@ $tablica_13_stanowisko = $wynik_13_stanowisko->fetch_assoc();
 $stanowisko_crm1 = $tablica_13_stanowisko['crm1_stanowisko'];
 
 
-       $zapytanie_stanowiska = "SELECT *  FROM pracownicy_stanowiska WHERE id_pracownika='$id' AND status=1";
+        $zapytanie_stanowiska = "SELECT *  FROM pracownicy_stanowiska WHERE id_pracownika='$id' AND status=1";
         $wynik_stanowiska = $db2_hr->query($zapytanie_stanowiska);
         $ilosc_stanowiska = $wynik_stanowiska->num_rows;
         for ($i = 0; $i < $ilosc_stanowiska; $i++)
@@ -57,13 +57,13 @@ $stanowisko_crm1 = $tablica_13_stanowisko['crm1_stanowisko'];
 
 
 
-
 $update_capital ="UPDATE cash_users SET id_oddzialu='$oddzial_crm1', id_dzialu='$dzial_crm1', stanowisko='$stanowisko_crm1' WHERE user_id='$id'";
 $db2_capital->query($update_capital);
 
 
 $_SESSION['alert2'] = '<div class="alert alert-success">Użytkownik został przpięty w systemie CRM1 oraz CRM2<br />Zostały usunięte dotychczasowe stanowiska</div>';
 header('location: main.php');
+
 $db2->close();
 $db13->close();
 $db2_hr->close();

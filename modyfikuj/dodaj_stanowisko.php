@@ -8,7 +8,8 @@ $stanowisko = $_POST['stanowisko'];
 $one = 1;
 $zero = 0;
 
-if (($oddzial == 0) || ($stanowisko == 0)){
+if (($oddzial == 0) || ($stanowisko == 0))
+{
     $_SESSION['alert2'] = '<div class="alert alert-danger">Nie wybrano stanowiska lub oddziału docelowego</div>';
     header('location: ../modyfikuj.php?id='.$id);
     exit();
@@ -31,6 +32,7 @@ else
 
 $_SESSION['alert2'] = '<div class="alert alert-success">Stanowisko zostało pomyślnie dodane.</div>';
 header('location: ../modyfikuj.php?id='.$id);
+
 $db2->close();
 $db13->close();
 $db2_hr->close();

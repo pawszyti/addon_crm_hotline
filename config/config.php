@@ -6,10 +6,12 @@ $db13_pass = 'pawel098!';
 
 @ $db13 = new mysqli($db13_host,$db13_user,$db13_pass,$db13_name);
 
-if (mysqli_connect_errno()) {
-    echo "Error: ".$db13->connect_errno;
+if (mysqli_connect_errno())
+{
+    echo "Error bazy 1.13: ".$db13->connect_errno;
     exit;
 }
+
 $db13-> query("SET NAMES 'utf8' COLLATE 'utf8_general_ci'"); //dodanie kodowania utf-8
 
 $db2_host = '192.168.1.3';
@@ -24,23 +26,24 @@ $db2_pass = 'pawel098!';
 @ $db2_capital = new mysqli($db2_host,$db2_user,$db2_pass,$db2_name_capital);
 
 
-
-
-
-if (mysqli_connect_errno()) {
-    echo "Error: ".$db2->connect_errno;
+if (mysqli_connect_errno())
+{
+    echo "Error bazy Centrum: ".$db2->connect_errno;
     exit;
 }
 
-if (mysqli_connect_errno()) {
-    echo "Error: ".$db2_hr->connect_errno;
+if (mysqli_connect_errno())
+{
+    echo "Error bazy HR: ".$db2_hr->connect_errno;
     exit;
 }
 
-if (mysqli_connect_errno()) {
-    echo "Error: ".$db2_capital->connect_errno;
+if (mysqli_connect_errno())
+{
+    echo "Error bazy Capital: ".$db2_capital->connect_errno;
     exit;
 }
+
 $db2-> query("SET NAMES 'utf8' COLLATE 'utf8_general_ci'");
 $db2_hr-> query("SET NAMES 'utf8' COLLATE 'utf8_general_ci'");
 $db2_capital-> query("SET NAMES 'utf8' COLLATE 'utf8_general_ci'");
