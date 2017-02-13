@@ -1,16 +1,17 @@
 <?php
 session_start();
 require('config/config.php');
-$pesel = $_GET['id'];
+$pesel = $_GET['pesel'];
+$idi = $_GET['id'];
 $pass = md5(ZIARNO_MD5.md5($pesel).ZIARNO_MD5); //haszowanie hasła do crm
 
-$update = "UPDATE uzytkownicy_ewidencja SET status=1, haslo='$pass' WHERE pesel LIKE '$pesel'";
+$update = "UPDATE uzytkownicy_ewidencja SET status=1, haslo='$pass' WHERE id LIKE '$idi'";
 $db2->query($update);
 
 
 
 
-$zapytanie_pracwnik = "SELECT * FROM uzytkownicy_ewidencja WHERE pesel LIKE  $pesel";
+$zapytanie_pracwnik = "SELECT * FROM uzytkownicy_ewidencja WHERE id LIKE  $idi";
 $wynik_pracownik = $db2->query($zapytanie_pracwnik);
 $tablica_pracownik = $wynik_pracownik->fetch_assoc();
 $id_pracownik = $tablica_pracownik['id'];
