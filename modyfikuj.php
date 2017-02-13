@@ -103,7 +103,7 @@ unset($_SESSION['alert2']);
 
 if ($tablica_stanowiska[czy_glowne]==1)
 {
-    echo "<td><input disabled type=submit class=\"btn btn-danger disabled\" value='Usuń' onclick=\"bootbox.confirm('Czy chcesz usunąć stanowisko<b> " . $tablica_jednostka['nazwa'] . " | " . $tablica_stanowisko['nazwa'] . "</b>  ?', function(result){ if (result==true) {window.location.href='odblokuj.php?id=" . $tablica['pesel'] . "'}; });\" class=\"myButton2\"></td>
+    echo "<td><input disabled type=submit class=\"btn btn-danger disabled\" value='Usuń' \" class=\"myButton2\"></td>
     <td>";
     echo "<img src=\"img/tak.png\" width=\"25px\"> </td>";
 }

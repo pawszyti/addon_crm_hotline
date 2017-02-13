@@ -110,7 +110,8 @@ $limit = 0;
                     {
                         $tablica = $wynik->fetch_assoc();
                         $pesel = $tablica['pesel'];
-                        $zapytanie_hr = "SELECT * FROM pracownicy_ewidencja WHERE pesel LIKE '$pesel'";
+                        $idi = $tablica['id'];
+                        $zapytanie_hr = "SELECT * FROM pracownicy_ewidencja WHERE id LIKE '$idi'";
                         $wynik_hr = $db2_hr->query($zapytanie_hr);
                         $tablica_hr = $wynik_hr->fetch_assoc();
                         $pracuje = $tablica_hr['czy_pracuje'];
