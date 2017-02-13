@@ -30,6 +30,7 @@ if ($result = $db13->query(sprintf("SELECT * FROM hotline_users WHERE login='%s'
             if ($pass_base==$pass) {
                 $_SESSION['username'] = $row['login'];
                 $_SESSION['name'] = $row['imie'];
+                $_SESSION['id_pracownika'] = $row['id_crm'];
                 $_SESSION['surname'] = $row['nazwisko'];
                 $_SESSION['hotline'] = sha1(lock); //cookie logowania
                 if (($_SESSION['username']=='k.szpond')||($_SESSION['username']=='p.szymczyk'))

@@ -109,7 +109,7 @@ if ($tablica_stanowiska[czy_glowne]==1)
 }
 else
 {
-    echo " <td><input type=submit class=\"btn btn-danger\" value='Usuń' onclick=\"bootbox.confirm('Czy chcesz usunąć stanowisko<b> " . $tablica_jednostka['nazwa'] . " | " . $tablica_stanowisko['nazwa'] . "</b>  ?', function(result){ if (result==true) {window.location.href='modyfikuj/usun_stanowisko.php?id=" . $tablica_stanowiska['id'] . "&id_pracownika=".$id."'}; });\" class=\"myButton2\"></td>
+    echo " <td><input type=submit class=\"btn btn-danger\" value='Usuń' onclick=\"bootbox.confirm('Czy chcesz usunąć stanowisko<b> " . $tablica_jednostka['nazwa'] . " | " . $tablica_stanowisko['nazwa'] . "</b>  ?', function(result){ if (result==true) {window.location.href='modyfikuj/usun_stanowisko.php?id=" . $tablica_stanowiska['id'] . "&id_pracownika=".$id."&oddzial=".$tablica_stanowiska[id_jednostki_organizacyjnej]."'}; });\" class=\"myButton2\"></td>
     <td> <input type=submit class=\"btn btn-info\" value='Ustaw' onclick=\"bootbox.confirm('Czy chcesz ustawić stanowisko <b> " . $tablica_jednostka['nazwa'] . " | " . $tablica_stanowisko['nazwa'] . "</b>  jako główne ?', function(result){ if (result==true) {window.location.href='modyfikuj/ustaw_glowne.php?id=" . $tablica_stanowiska['id'] . "&id_pracownika=".$id. "'}; });\" class=\"myButton2\"></td>";
 }}
     echo "</tr>";
@@ -207,6 +207,7 @@ else
        modal.find('.modal-title').text('New message to ' + recipient)
        modal.find('.modal-body input').val(recipient)
    })
+
 
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()

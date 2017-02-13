@@ -40,8 +40,20 @@ $update_capital ="UPDATE cash_users SET id_oddzialu='$oddzial_crm1', id_dzialu='
 $db2_capital->query($update_capital);
 //zmiana w crm1
 
+
+//historia
+$id_admin = $_SESSION['id_pracownika'];
+$akcja = 3;
+$data = date("Y-m-d H:i:s");
+$insert_historia = "INSERT INTO `hotline_historia` (`id`,`data`,`id_user_admin`,`id_user`,`id_oddzial`,`id_akcja`) VALUES (NULL,'$data','$id_admin','$id_pracownika','$oddzial','$akcja')";
+$db13->query($insert_historia);
+
+
+
 $_SESSION['alert2'] = '<div class="alert alert-success">Zmieniono pomyślnie stanowisko główne.</div>';
 header('location: ../modyfikuj.php?id='.$id_pracownika);
+
+
 
 $db2->close();
 $db13->close();

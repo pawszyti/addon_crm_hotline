@@ -25,20 +25,11 @@ $limit = 0;
     <title>Hotline</title>
     <link href="css/style.css" rel="stylesheet">
     <link href="css/bootstrap.css" rel="stylesheet">
-   <!-- <link href="css/bootstrap-theme.css" rel="stylesheet">-->
-    <link href="css/set1.css" rel="stylesheet"> <!--plugin css do input text -->
-  <!--  <link href="css/bootstrap-select.min.css" rel="stylesheet"> <!--plugin css do input select
-    <link href="css/select2.css" rel="stylesheet">-->
+    <link href="css/set1.css" rel="stylesheet"> <!--plugin to bajeranckich input -->
 
     <script src="js/jquery-3.1.1.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/bootbox.min.js"></script> <!--plugin js do okien dialogowych (potwierdzenie) -->
-    <!--<script src="js/bootstrap-select.min.js"></script> <!--plugin js do input select
-    <script src="js/select2.js"></script>
-    <script>
-        $(document).ready(function() { $("#e1").select2(); });
-    </script>-->
-
 </head>
 <body>
 
@@ -124,7 +115,7 @@ $limit = 0;
                         $tablica_hr = $wynik_hr->fetch_assoc();
                         $pracuje = $tablica_hr['czy_pracuje'];
                         $login = str_replace(".", "", $tablica_hr['login']);
-
+                        $id_user = $tablica_hr['id'];
 
                         if ($pracuje == 0)
                         {
@@ -160,7 +151,7 @@ $limit = 0;
                             echo "<td><input type=submit class=\"btn btn-warning\" value='Przepnij' data-toggle=\"modal\" class=\"myButton2\" data-target=\"#exampleModal" . $tablica[id] . "\">
                             <td><a class=\"btn btn-success \" href='modyfikuj.php?id=".$tablica[id]."' \">Modyfikuj</a>
                             </td>
-                            <td><input type=submit class=\"btn btn-info\" value='Zmień hasło' onclick=\"bootbox . confirm('Czy chcesz zmienić hasło domenowe dla użytkownia<b> " . $tablica['imie'] . " " . $tablica['nazwisko'] . "</b>  na Capital1?', function (result){ if (result == true) { window . location . href = 'sambapass.php?login=" . $login ."'};});\" class=\"myButton2\"></td>
+                            <td><input type=submit class=\"btn btn-info\" value='Zmień hasło' onclick=\"bootbox . confirm('Czy chcesz zmienić hasło domenowe dla użytkownia<b> " . $tablica['imie'] . " " . $tablica['nazwisko'] . "</b>  na Capital1?', function (result){ if (result == true) { window . location . href = 'sambapass.php?login=" . $login ."&id=".$id_user."'};});\" class=\"myButton2\"></td>
                             </td>";
 
 // **** okno dialogowe - start ****
@@ -308,10 +299,8 @@ else
     })
 
     $(function() {
-        // trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
         if (!String.prototype.trim) {
             (function() {
-                // Make sure we trim BOM and NBSP
                 var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
                 String.prototype.trim = function() {
                     return this.replace(rtrim, '');
@@ -345,6 +334,7 @@ $db2->close();
 $db13->close();
 $db2_hr->close();
 $db2_capital->close();
+
 ?>
 
 </body>
