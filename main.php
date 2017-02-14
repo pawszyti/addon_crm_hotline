@@ -22,7 +22,7 @@ $limit = 0;
 <head>
     <meta charset="utf-8">
     <meta name="author" content="Paweł Szymczyk" />
-    <title>Hotline</title>
+    <title>Panel Hotline</title>
     <link href="css/style.css" rel="stylesheet">
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/set1.css" rel="stylesheet"> <!--plugin to bajeranckich input -->

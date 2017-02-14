@@ -7,7 +7,7 @@ $username = $_SESSION['username'];
 $name = $_SESSION['name'];
 $surname = $_SESSION['surname'];
 $limit = 0;
-    if (($username=='k.szpond')||($username=='p.szymczyk'))
+    if (($username=='k.szpond')||($username=='p.szymczyk')||($username=='m.pianka'))
         {
             setcookie("hotline", 'online', time() + 9900); //czas życia cookie
         }
@@ -28,13 +28,15 @@ $licznik = 1;
 <head>
     <meta charset="utf-8">
     <meta name="author" content="Paweł Szymczyk" />
-    <title>Hotline</title>
+    <title>Panel Hotline</title>
     <link href="css/style.css" rel="stylesheet">
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap-theme.css" rel="stylesheet">
+    <link href="css/bootstrap-select.min.css" rel="stylesheet">
     <script src="js/jquery-3.1.1.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/bootbox.min.js"></script> <!--plugin js do okien dialogowych (potwierdzenie) -->
+    <script src="js/bootstrap-select.min.js"></script>
 
 
 </head>
@@ -147,7 +149,7 @@ else
                     <form action=\"modyfikuj/dodaj_stanowisko.php\" method='post' name='" . $tablica[id] . "'>";
 // **** select oddzialy start ****
                     echo "
-                    <select name='oddzial' class='form-control'>
+                    <select name='oddzial' class='form-control selectpicker' data-live-search=\"true\">
                     <option value ='0'>- - wybierz oddzial- -</option>";
 
                     $zapytanie_oddzialy = "SELECT * FROM jednostki_organizacyjne_ewidencja WHERE ((id<799 OR id>1399) AND (id<16999 OR id=20000)) AND (status=1) AND (nazwa!='a') ORDER BY nazwa ";
@@ -160,13 +162,13 @@ else
                         <option value = '".$tablica_oddzialy[id]."' > ".$tablica_oddzialy[nazwa]." </option > ";
                     }
 
-                    echo " </select > <br />
+                    echo " </select > <br /><br />
  
 <!--// **** select oddzialy end **** -->
  
 <!--// // **** select stanowiska start **** -->
                                                         
-                    <select name='stanowisko' class='form-control'>
+                    <select name='stanowisko' class='form-control selectpicker' data-live-search=\"true\">
                     <option value ='0' >- - wybierz stanowisko- -</option>";
 
                     $zapytanie_stanowiska = "SELECT * FROM stanowiska_ewidencja WHERE status=1 AND ID!=215 AND nazwa!='ppppp' AND usunieto=0 ORDER BY nazwa ";

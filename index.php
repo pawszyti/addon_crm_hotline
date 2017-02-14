@@ -12,7 +12,7 @@ require_once ('config/config.php');
 <head>
     <meta charset="utf-8">
     <meta name="author" content="Paweł Szymczyk" />
-    <title>Baza Wiedzy</title>
+    <title>Panel Hotline</title>
 
     <link href="css/style.css" rel="stylesheet">
     <!--Bootstrap CSS-->
