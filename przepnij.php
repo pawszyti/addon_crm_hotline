@@ -66,7 +66,7 @@ $db2_capital->query($update_capital);
 $id_admin = $_SESSION['id_pracownika'];
 $akcja = 2;
 $data = date("Y-m-d H:i:s");
-$insert_historia = "INSERT INTO `hotline_historia` (`id`,`data`,`id_user_admin`,`id_user`,`id_oddzial`,`id_akcja`) VALUES (NULL,'$data','$id_admin','$id','$oddzial','$akcja')";
+$insert_historia = "INSERT INTO `hotline_historia` (`id`,`data`,`id_crm`,`id_user`,`id_oddzial`,`id_akcja`) VALUES (NULL,'$data','$id_admin','$id','$oddzial','$akcja')";
 $db13->query($insert_historia);
 
 

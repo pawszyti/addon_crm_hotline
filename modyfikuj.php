@@ -7,11 +7,11 @@ $username = $_SESSION['username'];
 $name = $_SESSION['name'];
 $surname = $_SESSION['surname'];
 $limit = 0;
-    if (($username=='k.szpond')||($username=='p.szymczyk')||($username=='m.pianka'))
+        if (($username=='k.szpond')||($username=='p.szymczyk')||($username=='m.pianka')||($username=='p.jakacki'))
         {
             setcookie("hotline", 'online', time() + 9900); //czas życia cookie
         }
-    else
+        else
         {
             setcookie("hotline", 'online', time() + 900); //czas życia cookie
         }

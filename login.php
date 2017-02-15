@@ -32,7 +32,7 @@ if ($result = $db13->query(sprintf("SELECT * FROM hotline_users WHERE login='%s'
                 $_SESSION['id_pracownika'] = $row['id_crm'];
                 $_SESSION['surname'] = $row['nazwisko'];
                 $_SESSION['hotline'] = sha1(lock); //cookie logowania
-                if (($_SESSION['username']=='k.szpond')||($_SESSION['username']=='p.szymczyk'))
+                if (($username=='k.szpond')||($username=='p.szymczyk')||($username=='m.pianka')||($username=='p.jakacki'))
                 {
                     setcookie("hotline", 'online', time() + 99900); //czas życia cookie
                 }
@@ -40,6 +40,12 @@ if ($result = $db13->query(sprintf("SELECT * FROM hotline_users WHERE login='%s'
                 {
                     setcookie("hotline", 'online', time() + 900); //czas życia cookie
                 }
+                //historia
+                $id_admin = $_SESSION['id_pracownika'];
+                $data = date("Y-m-d H:i:s");
+                $insert_historia = "INSERT INTO `hotline_logowania` (`id_logowanie`,`data_logowanie`,`user_logowanie`) VALUES (NULL,'$data','$id_admin')";
+                $db13->query($insert_historia);
+
                 header('location: main.php');
             } else {
                 $_SESSION['error'] = '<div class="alert alert-danger">Niepoprawne hasło</div>';
