@@ -5,6 +5,12 @@ if (isset($_SESSION['hotline']) && $_SESSION['hotline'] == sha1(lock) && isset($
     header('location: main.php');
     exit();
 }
+
+if (isset($_SESSION['hotline']) && $_SESSION['hotline'] == sha1(admin) && isset($_COOKIE['admin']))
+{
+    header('location: admin.php');
+    exit();
+}
 require_once ('config/config.php');
 ?>
 <!DOCTYPE html>

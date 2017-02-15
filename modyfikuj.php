@@ -13,7 +13,7 @@ $limit = 0;
         }
         else
         {
-            setcookie("hotline", 'online', time() + 900); //czas życia cookie
+            setcookie("hotline", 'online', time() + 1800); //czas życia cookie
         }
 $id = $_GET[id];
 $zapytanie = "SELECT *  FROM uzytkownicy_ewidencja WHERE id='$id'" ;

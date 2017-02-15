@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION['hotline']) && $_SESSION['hotline'] == sha1(lock) && isset($_COOKIE['hotline']))
+if(isset($_SESSION['hotline']) && $_SESSION['hotline'] == sha1(admin) && isset($_COOKIE['admin']))
 {
 require_once ('../config/config.php');
 $username = $_SESSION['username'];
@@ -41,14 +41,14 @@ else
 </div>
 
 <div class="container">
-
-    <a href="../admin.php a" class="btn btn-success col-lg-2 col-lg-offset-3">Użytkownicy</a>
+<div style="margin-bottom: 60px">
+    <a href="../admin.php" class="btn btn-success col-lg-2 col-lg-offset-3">Użytkownicy</a>
     <a class="btn btn-danger col-lg-2" style="margin-left: 6px;margin-right: 6px" disabled >Historia akcji</a>
-    <a href="admin/hotline_users.php" class="btn btn-info col-lg-2" >Historia logowań</a>
+    <a href="hotline_logowanie.php" class="btn btn-info col-lg-2" >Historia logowań</a>
+
+</div>
 
 
-
-    <a href="admin/hotline_users.php" class="btn btn-default col-lg-4 col-lg-offset-4" style="margin-top: 20px; margin-bottom: 20px" >Dodaj użytkownika</a>
 
     <table class="table table-striped" cellspacing='0' style='text-align: center'>
         <tr>
@@ -61,7 +61,7 @@ else
 
         </tr>
         <?php
-        $zapytanie_historia = "SELECT * FROM hotline_historia, hotline_akcja, hotline_users WHERE hotline_historia.id_akcja = hotline_akcja.id AND hotline_historia.id_user_admin = hotline_users.id_crm";
+        $zapytanie_historia = "SELECT * FROM hotline_historia, hotline_akcja WHERE hotline_historia.id_akcja = hotline_akcja.id";
         $wynik_historia = $db13->query($zapytanie_historia);
         $ilosc_historia = $wynik_historia->num_rows;
         $licznik=0;
@@ -71,9 +71,40 @@ else
             <tr>
                 <td><?php echo $licznik?></td>
                 <td><?php echo $tablica_historia[data]?></td>
-                <td><?php echo $tablica_historia[id_user_admin]?></td>
-                <td><?php echo $tablica_historia[id_user]?></td>
-                <td><?php echo $tablica_historia[id_oddzial]?></td>
+
+                <?php
+                $zapytanie_historia_admin = "SELECT * FROM hotline_users WHERE id_crm LIKE $tablica_historia[id_crm] ";
+                $wynik_historia_admin = $db13->query($zapytanie_historia_admin);
+                $tablica_historia_admin = $wynik_historia_admin->fetch_assoc();
+                $nazwa = $tablica_historia_admin[imie]." ".$tablica_historia_admin[nazwisko];
+                ;?>
+
+                <td><?php echo $nazwa; ?></td>
+
+                <?php
+                $zapytanie_historia_user = "SELECT * FROM uzytkownicy_ewidencja WHERE id LIKE  $tablica_historia[id_user]";
+                $wynik_historia_user = $db2->query($zapytanie_historia_user);
+                $tablica_historia_user = $wynik_historia_user->fetch_assoc();
+                $user = $tablica_historia_user[imie]." ".$tablica_historia_user[nazwisko];
+                ?>
+
+                <td><?php echo $user; ?></td>
+
+                <?php
+                if ($tablica_historia[id_oddzial]==0)
+                {
+                    echo "<td>n/d</td>";
+                }
+                else {
+                    $zapytanie_historia_oddzial = "SELECT * FROM jednostki_organizacyjne_ewidencja WHERE id LIKE  $tablica_historia[id_oddzial] ";
+                    $wynik_historia_oddzial = $db13->query($zapytanie_historia_oddzial);
+                    $tablica_historia_oddzial = $wynik_historia_oddzial->fetch_assoc();
+                    $nazwa = $tablica_historia_oddzial[nazwa];
+
+                    echo "<td>" . $oddzial . "</td>";
+                }
+                   ?>
+
                 <td><?php echo $tablica_historia[id_akcja]?></td>
 
             </tr>
