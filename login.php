@@ -28,7 +28,7 @@ if ($result = $db13->query(sprintf("SELECT * FROM hotline_users WHERE login='%s'
                     $_SESSION['username'] = $row['login'];
                     $_SESSION['name'] = $row['imie'];
                     $_SESSION['id_pracownika'] = $row['id_crm'];
-                    $_SESSION['surname'] = '-';
+                    $_SESSION['surname'] = '';
                     $_SESSION['hotline'] = sha1(admin); //cookie logowania
                     setcookie("admin", 'online', time() + 1800); //czas życia cookie
 

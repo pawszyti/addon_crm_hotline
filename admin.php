@@ -6,7 +6,6 @@ require_once ('config/config.php');
 $username = $_SESSION['username'];
 $name = $_SESSION['name'];
 $surname = $_SESSION['surname'];
-$limit = 0;
 setcookie("admin", 'online', time() + 1800); //czas życia cookie
 ?>
 
@@ -18,7 +17,6 @@ setcookie("admin", 'online', time() + 1800); //czas życia cookie
     <title>Panel Hotline</title>
     <link href="css/style.css" rel="stylesheet">
     <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/set1.css" rel="stylesheet"> <!--plugin to bajeranckich input -->
 
     <script src="js/jquery-3.1.1.js"></script>
     <script src="js/bootstrap.js"></script>
@@ -61,56 +59,58 @@ unset($_SESSION['alert2']);
         $wynik_admins = $db13->query($zapytanie_admins);
         $ilosc_admins = $wynik_admins->num_rows;
         $licznik=0;
-        for ($i = 0; $i < $ilosc_admins; $i++){?>
-            <?php $tablica_admins = $wynik_admins->fetch_assoc(); $licznik++;?>
+        for ($i = 0; $i < $ilosc_admins; $i++)
+        {
+            ?>
+            <?php
+            $tablica_admins = $wynik_admins->fetch_assoc();
+            $licznik++;
+            ?>
 
             <tr>
-            <td><?php echo $licznik?></td>
-            <td><?php echo $tablica_admins[id_crm]?></td>
-            <td><?php echo $tablica_admins[imie]?></td>
-            <td><?php echo $tablica_admins[nazwisko]?></td>
-            <td><?php echo $tablica_admins[login]?></td>
-                <? if ($tablica_admins[login]==admin) {
+            <td><?php echo $licznik; ?></td>
+            <td><?php echo $tablica_admins[id_crm]; ?></td>
+            <td><?php echo $tablica_admins[imie]; ?></td>
+            <td><?php echo $tablica_admins[nazwisko]; ?></td>
+            <td><?php echo $tablica_admins[login]; ?></td>
+                <?php
+                if ($tablica_admins[login]=='admin')
+                {
                     echo "<td><a disabled class='btn btn-danger'>Usuń</a> </td>";
                 }
             else
-            {?>
-              <td>
-                  <a href="admin/usun.php?id=<?php echo $tablica_admins['id_crm'] ?>" class="btn btn-danger">Usuń</a>
-              </td>
-<?php } ?>
+            {
+                echo
+                    "<td>
+                     <a href='admin/usun.php?id=".$tablica_admins['id_crm']." class='btn btn-danger'>Usuń</a>
+                     </td>";
+
+            }
+?>
 
                 </tr>
-
-
-
-
-
-
-
-
 
                 <?php
         }
 
 
 // **** okno dialogowe - start ****
-echo "<div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\">
+echo "<div class=\"modal fade\" id=\"exampleModal\" tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel'>
         <div class=\"modal-dialog\" role=\"document\">
             <div class=\"modal-content\">
                 <div class=\"modal-header\">
-                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>
-                    <h4 id=\"exampleModalLabel\">Aby dodać, wpisz id użytkownia: <br /></h4><h4><b>".$tablica_hr[imie]." ".$tablica_hr[nazwisko]."</b></h4>
+                    <button type='button' class='close' data-dismiss='modal' aria-label=\"Close\"><span aria-hidden='true'>&times;</span></button>
+                    <h4 id='exampleModalLabel'>Aby dodać, wpisz id użytkownia: <br /></h4><h4><b>".$tablica_hr[imie]." ".$tablica_hr[nazwisko]."</b></h4>
                 </div>
-                <div class=\"modal-body\">
+                <div class='modal-body'>
 
-                    <form action=\"admin/dodaj.php\" method='post' name='dodaj'>
+                    <form action='admin/dodaj.php' method='post' name='dodaj'>
 
-                       <input type=\"text\" name=\"id_crm\" maxlength=5 onkeyup=\"this.value=this.value.replace(/\D/g,'')\">
+                       <input type='text' name='id_crm' maxlength=5 onkeyup='this.value=this.value.replace(/\D/g,'')'>
                </div>
-               <div class=\"modal-footer\">
-                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Anuluj</button>
-                    <button type=\"submit\" class=\"btn btn-success\">Dodaj</button>
+               <div class='modal-footer'>
+                    <button type='button' class=\"btn btn-default\" data-dismiss='modal'>Anuluj</button>
+                    <button type='submi' class='btn btn-success'>Dodaj</button>
                     </form>
                </div>
          </div>
@@ -124,7 +124,7 @@ echo "<div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialo
 else
 {
   header('location: logout.php');
-  exit();
+  exit;
   //jesli pierwszy warunek nie został spełniony to prześlij to strony wylogowania
 }
 //LOGOWANIE - SPRAWDZENIE - STOP
@@ -136,7 +136,6 @@ $db2->close();
 $db13->close();
 $db2_hr->close();
 $db2_capital->close();
-
 ?>
 
 </body>

@@ -216,8 +216,10 @@ echo "<b><h5>Obecne stanowiska:</h5></b>";
                                                         for ($b = 0; $b < $ilosc_oddzialy; $b++)
                                                         {
                                                             $tablica_oddzialy = $wynik_oddzialy->fetch_assoc();
+                                                            $id_oddzialu = $tablica_oddzialy[id];
+                                                            $nazwa_oddzialu = $tablica_oddzialy[nazwa];
                                                             echo " 
-                                                            <option value = '".$tablica_oddzialy[id]."' > ".$tablica_oddzialy[nazwa]." </option > ";
+                                                            <option value = '".$id_oddzialu."' > ".$nazwa_oddzialu." </option > ";
                                                         }
 
                                                         echo " </select > <br />
@@ -233,8 +235,10 @@ echo "<b><h5>Obecne stanowiska:</h5></b>";
                                                         for ($c = 0; $c < $ilosc_stanowiska; $c++)
                                                         {
                                                             $tablica_stanowiska = $wynik_stanowiska->fetch_assoc();
+                                                            $id_stanowiska = $tablica_stanowiska[id];
+                                                            $nazwa_stanowiska = $tablica_stanowiska[nazwa];
                                                             echo " 
-                                                            <option value = '".$tablica_stanowiska[id]."' > ".$tablica_stanowiska[nazwa]." </option >";
+                                                            <option value = '".$id_stanowiska."' > ".$nazwa_stanowiska." </option >";
                                                         }
                                                         echo "<select />
 <!-- // **** select stanowiska end **** -->
