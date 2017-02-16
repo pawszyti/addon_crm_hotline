@@ -11,6 +11,7 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 $username = htmlentities($username, ENT_QUOTES, "UTF-8");//dodawanie encji
 $pass = md5(ZIARNO_MD5.md5($password).ZIARNO_MD5);
+$ip = $_SESSION[ip];
 
 if ($result = $db13->query(sprintf("SELECT * FROM hotline_users WHERE login='%s'",
     mysqli_real_escape_string($db13,$username))))
@@ -35,7 +36,7 @@ if ($result = $db13->query(sprintf("SELECT * FROM hotline_users WHERE login='%s'
                     //historia
                     $id_admin = $_SESSION['id_pracownika'];
                     $data = date("Y-m-d H:i:s");
-                    $insert_historia = "INSERT INTO `hotline_logowania` (`id_logowanie`,`data_logowanie`,`user_logowanie`) VALUES (NULL,'$data','$id_admin')";
+                    $insert_historia = "INSERT INTO `hotline_logowania` (`id_logowanie`,`data_logowanie`,`user_logowanie`,`ip_logowanie`) VALUES (NULL,'$data','$id_admin','$ip')";
                     $db13->query($insert_historia);
 
                     header('location: admin.php');
@@ -69,7 +70,7 @@ if ($result = $db13->query(sprintf("SELECT * FROM hotline_users WHERE login='%s'
                 //historia
                 $id_admin = $_SESSION['id_pracownika'];
                 $data = date("Y-m-d H:i:s");
-                $insert_historia = "INSERT INTO `hotline_logowania` (`id_logowanie`,`data_logowanie`,`user_logowanie`) VALUES (NULL,'$data','$id_admin')";
+                $insert_historia = "INSERT INTO `hotline_logowania` (`id_logowanie`,`data_logowanie`,`user_logowanie`,`ip_logowanie`) VALUES (NULL,'$data','$id_admin','$ip')";
                 $db13->query($insert_historia);
 
                 header('location: main.php');

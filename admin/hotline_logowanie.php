@@ -7,7 +7,7 @@ $username = $_SESSION['username'];
 $name = $_SESSION['name'];
 $surname = $_SESSION['surname'];
 $limit = 0;
-    setcookie("hotline", 'online', time() + 1800); //czas życia cookie
+setcookie("admin", 'online', time() + 1800); //czas życia cookie
 
 ?>
 
@@ -19,11 +19,9 @@ $limit = 0;
     <title>Panel Hotline</title>
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/bootstrap.css" rel="stylesheet">
-    <link href="../css/set1.css" rel="stylesheet"> <!--plugin to bajeranckich input -->
 
     <script src="../js/jquery-3.1.1.js"></script>
     <script src="../js/bootstrap.js"></script>
-    <script src="../js/bootbox.min.js"></script> <!--plugin js do okien dialogowych (potwierdzenie) -->
 </head>
 <body>
 
@@ -49,6 +47,7 @@ $limit = 0;
             <th style="text-align: center">lp.</th>
             <th style="text-align: center">Data</th>
             <th style="text-align: center">Użytkownik</th>
+            <th style="text-align: center">IP</th>
 
 
         </tr>
@@ -72,6 +71,7 @@ $limit = 0;
                 ?>
 
                 <td><?php echo $nazwa; ?></td>
+                <td><?php echo $tablica_historia[ip_logowanie]?></td>
 
 
             </tr>
@@ -83,7 +83,7 @@ $limit = 0;
         }
         else
         {
-            header('location: logout.php');
+            header('location: ../logout.php');
             exit();
             //jesli pierwszy warunek nie został spełniony to prześlij to strony wylogowania
         }

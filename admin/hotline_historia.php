@@ -7,14 +7,9 @@ $username = $_SESSION['username'];
 $name = $_SESSION['name'];
 $surname = $_SESSION['surname'];
 $limit = 0;
-if (($username=='k.szpond')||($username=='p.szymczyk'))
-{
-    setcookie("hotline", 'online', time() + 9900); //czas życia cookie
-}
-else
-{
-    setcookie("hotline", 'online', time() + 900); //czas życia cookie
-}
+
+setcookie("admin", 'online', time() + 1800); //czas życia cookie
+
 ?>
 
 <!DOCTYPE html>
@@ -25,11 +20,9 @@ else
     <title>Panel Hotline</title>
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/bootstrap.css" rel="stylesheet">
-    <link href="../css/set1.css" rel="stylesheet"> <!--plugin to bajeranckich input -->
 
     <script src="../js/jquery-3.1.1.js"></script>
     <script src="../js/bootstrap.js"></script>
-    <script src="../js/bootbox.min.js"></script> <!--plugin js do okien dialogowych (potwierdzenie) -->
 </head>
 <body>
 
@@ -101,7 +94,7 @@ else
                     $tablica_historia_oddzial = $wynik_historia_oddzial->fetch_assoc();
                     $nazwa = $tablica_historia_oddzial[nazwa];
 
-                    echo "<td>" . $oddzial . "</td>";
+                    echo "<td>" . $nazwa . "</td>";
                 }
                    ?>
 
@@ -124,7 +117,7 @@ else
         }
         else
         {
-            header('location: logout.php');
+            header('location: ../logout.php');
             exit();
             //jesli pierwszy warunek nie został spełniony to prześlij to strony wylogowania
         }

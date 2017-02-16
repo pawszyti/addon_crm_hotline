@@ -7,10 +7,10 @@
     <list default="true" id="466933ab-e416-407c-9570-bc189b673bab" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin.php" afterPath="$PROJECT_DIR$/admin.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/hotline_historia.php" afterPath="$PROJECT_DIR$/admin/hotline_historia.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/hotline_logowanie.php" afterPath="$PROJECT_DIR$/admin/hotline_logowanie.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/usun.php" afterPath="$PROJECT_DIR$/admin/usun.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/login.php" afterPath="$PROJECT_DIR$/login.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,7 +28,7 @@
       <file leaf-file-name="admin.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
+            <state relative-caret-position="575">
               <caret line="84" column="78" lean-forward="false" selection-start-line="84" selection-start-column="78" selection-end-line="84" selection-end-column="78" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -71,19 +71,15 @@
       <file leaf-file-name="login.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/login.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="900">
-              <caret line="50" column="12" lean-forward="false" selection-start-line="50" selection-start-column="12" selection-end-line="50" selection-end-column="12" />
+            <state relative-caret-position="270">
+              <caret line="18" column="34" lean-forward="true" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
               <folding>
-                <marker date="1487233399300" expanded="true" signature="481:525" ph="SELECT * FRO... hotline_users" />
-                <marker date="1487233399300" expanded="true" signature="636:3799" ph="..." />
-                <marker date="1487233399300" expanded="true" signature="744:2159" ph="..." />
-                <marker date="1487233399300" expanded="true" signature="786:842" ph="SELECT * FRO... hotline_user" />
-                <marker date="1487233399300" expanded="true" signature="848:1980" ph="..." />
-                <marker date="1487233399300" expanded="true" signature="984:1790" ph="..." />
-                <marker date="1487233399300" expanded="true" signature="1551:1667" ph="INSERT INTO `hotline_logowania`... " />
-                <marker date="1487233399300" expanded="true" signature="2221:2281" ph="SELECT * FRO... uzytkownicy_ewidencja" />
-                <marker date="1487233399300" expanded="true" signature="2221:2282" ph="SELECT * FRO... uzytkownicy_ewidencja" />
-                <marker date="1487233399300" expanded="true" signature="3229:3345" ph="INSERT INTO `hotline_logowania`... " />
+                <marker date="1487240857023" expanded="true" signature="502:546" ph="SELECT * FRO... hotline_users" />
+                <marker date="1487240857023" expanded="true" signature="807:863" ph="SELECT * FRO... hotline_user" />
+                <marker date="1487240857023" expanded="true" signature="1572:1709" ph="INSERT INTO `hotline_logowania`... " />
+                <marker date="1487240857023" expanded="true" signature="2263:2323" ph="SELECT * FRO... uzytkownicy_ewidencja" />
+                <marker date="1487240857023" expanded="true" signature="2263:2324" ph="SELECT * FRO... uzytkownicy_ewidencja" />
+                <marker date="1487240857023" expanded="true" signature="3271:3408" ph="INSERT INTO `hotline_logowania`... " />
               </folding>
             </state>
           </provider>
@@ -92,8 +88,8 @@
       <file leaf-file-name="hotline_historia.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/hotline_historia.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="63" column="146" lean-forward="true" selection-start-line="63" selection-start-column="128" selection-end-line="63" selection-end-column="146" />
+            <state relative-caret-position="72">
+              <caret line="73" column="0" lean-forward="true" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -105,38 +101,28 @@
                 <element signature="n#style#0;n#th#3;n#tr#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#th#4;n#tr#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#th#5;n#tr#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1487235422427" expanded="true" signature="2543:2649" ph="SELECT * FRO... hotline_historia" />
-                <marker date="1487235422427" expanded="true" signature="2543:2658" ph="SELECT * FRO... hotline_historia" />
-                <marker date="1487235422427" expanded="true" signature="3127:3160" ph="SELECT * FRO... hotline_users" />
-                <marker date="1487235422427" expanded="true" signature="3127:3161" ph="SELECT * FRO... hotline_users" />
-                <marker date="1487235422427" expanded="true" signature="3127:3173" ph="SELECT * FRO... hotline_users" />
-                <marker date="1487235422427" expanded="true" signature="3592:3643" ph="SELECT * FRO... jednostki_organizacyjne_ewidencja" />
-                <marker date="1487235422427" expanded="true" signature="4213:4276" ph="SELECT * FRO... jednostki_organizacyjne_ewidencja" />
+                <marker date="1487239842253" expanded="true" signature="2208:2314" ph="SELECT * FRO... hotline_historia" />
+                <marker date="1487239842253" expanded="true" signature="2208:2323" ph="SELECT * FRO... hotline_historia" />
+                <marker date="1487239842253" expanded="true" signature="2792:2825" ph="SELECT * FRO... hotline_users" />
+                <marker date="1487239842253" expanded="true" signature="2792:2826" ph="SELECT * FRO... hotline_users" />
+                <marker date="1487239842253" expanded="true" signature="2792:2838" ph="SELECT * FRO... hotline_users" />
+                <marker date="1487239842253" expanded="true" signature="3257:3308" ph="SELECT * FRO... jednostki_organizacyjne_ewidencja" />
+                <marker date="1487239842253" expanded="true" signature="3878:3941" ph="SELECT * FRO... jednostki_organizacyjne_ewidencja" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hotline_logowanie.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="hotline_logowanie.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/admin/hotline_logowanie.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1476">
-              <caret line="82" column="9" lean-forward="true" selection-start-line="82" selection-start-column="9" selection-end-line="82" selection-end-column="9" />
+            <state relative-caret-position="568">
+              <caret line="73" column="61" lean-forward="false" selection-start-line="73" selection-start-column="61" selection-end-line="73" selection-end-column="61" />
               <folding>
-                <marker date="1487235512811" expanded="true" signature="2254:2285" ph="SELECT * FRO... hotline_logowania" />
-                <marker date="1487235512811" expanded="true" signature="2254:2312" ph="SELECT * FRO... hotline_logowania" />
-                <marker date="1487235512811" expanded="true" signature="2790:2836" ph="SELECT * FRO... hotline_users" />
+                <marker date="1487240928387" expanded="true" signature="2107:2138" ph="SELECT * FRO... hotline_logowania" />
+                <marker date="1487240928387" expanded="true" signature="2107:2165" ph="SELECT * FRO... hotline_logowania" />
+                <marker date="1487240928387" expanded="true" signature="2643:2689" ph="SELECT * FRO... hotline_users" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -217,11 +203,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="usun.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="396">
+              <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="usun.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/usun.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="5" column="55" lean-forward="false" selection-start-line="5" selection-start-column="55" selection-end-line="5" selection-end-column="55" />
+            <state relative-caret-position="288">
+              <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
               <folding>
                 <marker date="1487236782947" expanded="true" signature="93:135" ph="DELETE FROM " />
                 <marker date="1487236782947" expanded="true" signature="93:137" ph="DELETE FROM " />
@@ -230,42 +226,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="modyfikuj.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modyfikuj.php">
+      <file leaf-file-name="przepnij.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/przepnij.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="610">
-              <caret line="87" column="46" lean-forward="false" selection-start-line="87" selection-start-column="46" selection-end-line="87" selection-end-column="46" />
+            <state relative-caret-position="72">
+              <caret line="4" column="6" lean-forward="false" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
               <folding>
-                <marker date="1487166969735" expanded="true" signature="625:676" ph="SELECT * FRO... uzytkownicy_ewidencja" />
-                <marker date="1487166969735" expanded="true" signature="2711:2730" ph="..." />
-                <marker date="1487166969735" expanded="true" signature="3048:3123" ph="SELECT * FRO... pracownicy_stanowiska" />
-                <marker date="1487166969735" expanded="true" signature="3479:3586" ph="SELECT * FRO... jednostki_organizacyjne_ewidencja" />
-                <marker date="1487166969735" expanded="true" signature="3881:3961" ph="SELECT * FRO... stanowiska_ewidencja" />
-                <marker date="1487166969735" expanded="true" signature="5803:6293" ph="..." />
-                <marker date="1487166969735" expanded="true" signature="5803:6334" ph="..." />
-                <marker date="1487166969735" expanded="true" signature="5803:6362" ph="..." />
-                <marker date="1487166969735" expanded="true" signature="5858:6293" ph="..." />
-                <marker date="1487166969735" expanded="true" signature="5900:6291" ph="..." />
-                <marker date="1487166969735" expanded="true" signature="5900:6293" ph="..." />
-                <marker date="1487166969735" expanded="true" signature="5945:6291" ph="..." />
-                <marker date="1487166969735" expanded="true" signature="6078:6085" ph="×" />
-                <marker date="1487166969735" expanded="true" signature="6643:6714" ph="..." />
-                <marker date="1487166969735" expanded="true" signature="6762:6911" ph="SELECT * FRO... jednostki_organizacyjne_ewidencja" />
-                <marker date="1487166969735" expanded="true" signature="7685:7760" ph="..." />
-                <marker date="1487166969735" expanded="true" signature="7810:7920" ph="SELECT * FRO... stanowiska_ewidencja" />
-                <marker date="1487166969735" expanded="true" signature="8652:8896" ph="..." />
-                <marker date="1487166969735" expanded="true" signature="9017:9045" ph="..." />
+                <marker date="1487160376854" expanded="true" signature="382:454" ph="SELECT * FRO... jednostki_organizacyjne_ewidencja" />
+                <marker date="1487160376854" expanded="true" signature="485:547" ph="SELECT * FRO... stanowiska_ewidencja" />
+                <marker date="1487160376854" expanded="true" signature="942:1017" ph="SELECT * FRO... pracownicy_stanowiska" />
+                <marker date="1487160376854" expanded="true" signature="1353:1431" ph="UPDATE praco... " />
+                <marker date="1487160376854" expanded="true" signature="1524:1679" ph="UPDATE uzytk... " />
+                <marker date="1487160376854" expanded="true" signature="1758:1895" ph="SELECT * FRO... pracownicy_stanowiska" />
+                <marker date="1487160376854" expanded="true" signature="2102:2258" ph="UPDATE praco... " />
+                <marker date="1487160376854" expanded="true" signature="2375:2561" ph="INSERT INTO `pracownicy_stanowiska`... " />
+                <marker date="1487160376854" expanded="true" signature="2640:2765" ph="UPDATE cash_... " />
+                <marker date="1487160376854" expanded="true" signature="2921:3068" ph="INSERT INTO `cash_agenci_historia_zmian_oddzialow`... " />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="11" column="11" lean-forward="false" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -309,8 +286,8 @@
       <find>alert</find>
       <find>900</find>
       <find>{</find>
-      <find>dodaj</find>
       <find>}</find>
+      <find>dodaj</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -341,16 +318,16 @@
         <option value="$PROJECT_DIR$/modyfikuj/dodaj_stanowisko.php" />
         <option value="$PROJECT_DIR$/modyfikuj/ustaw_glowne.php" />
         <option value="$PROJECT_DIR$/modyfikuj/usun_stanowisko.php" />
-        <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/modyfikuj.php" />
         <option value="$PROJECT_DIR$/admin/dodaj.php" />
-        <option value="$PROJECT_DIR$/login.php" />
         <option value="$PROJECT_DIR$/main.php" />
-        <option value="$PROJECT_DIR$/admin/hotline_historia.php" />
-        <option value="$PROJECT_DIR$/admin/hotline_logowanie.php" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/admin.php" />
         <option value="$PROJECT_DIR$/admin/usun.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/admin/hotline_historia.php" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/login.php" />
+        <option value="$PROJECT_DIR$/admin/hotline_logowanie.php" />
       </list>
     </option>
   </component>
@@ -564,12 +541,12 @@
       <workItem from="1486970130291" duration="12364000" />
       <workItem from="1486987948448" duration="9951000" />
       <workItem from="1487076339014" duration="4602000" />
-      <workItem from="1487147612244" duration="25808000" />
+      <workItem from="1487147612244" duration="28093000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="198724000" />
+    <option name="totallyTimeSpent" value="201009000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="3286" y="18" width="1920" height="1062" extended-state="6" />
@@ -619,14 +596,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -863,25 +832,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/przepnij.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="68" column="71" lean-forward="false" selection-start-line="68" selection-start-column="71" selection-end-line="68" selection-end-column="71" />
-          <folding>
-            <marker date="1487160376854" expanded="true" signature="382:454" ph="SELECT * FRO... jednostki_organizacyjne_ewidencja" />
-            <marker date="1487160376854" expanded="true" signature="485:547" ph="SELECT * FRO... stanowiska_ewidencja" />
-            <marker date="1487160376854" expanded="true" signature="942:1017" ph="SELECT * FRO... pracownicy_stanowiska" />
-            <marker date="1487160376854" expanded="true" signature="1353:1431" ph="UPDATE praco... " />
-            <marker date="1487160376854" expanded="true" signature="1524:1679" ph="UPDATE uzytk... " />
-            <marker date="1487160376854" expanded="true" signature="1758:1895" ph="SELECT * FRO... pracownicy_stanowiska" />
-            <marker date="1487160376854" expanded="true" signature="2102:2258" ph="UPDATE praco... " />
-            <marker date="1487160376854" expanded="true" signature="2375:2561" ph="INSERT INTO `pracownicy_stanowiska`... " />
-            <marker date="1487160376854" expanded="true" signature="2640:2765" ph="UPDATE cash_... " />
-            <marker date="1487160376854" expanded="true" signature="2921:3068" ph="INSERT INTO `cash_agenci_historia_zmian_oddzialow`... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sambapass.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -938,14 +888,6 @@
             <marker date="1487160412574" expanded="true" signature="313:365" ph="SELECT * FRO... pracownicy_ewidencja" />
             <marker date="1487160412574" expanded="true" signature="729:886" ph="INSERT INTO `hotline_historia`... " />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="11" lean-forward="false" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1080,74 +1022,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/login.php">
+    <entry file="file://$PROJECT_DIR$/admin/usun.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="50" column="12" lean-forward="false" selection-start-line="50" selection-start-column="12" selection-end-line="50" selection-end-column="12" />
+        <state relative-caret-position="288">
+          <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
           <folding>
-            <marker date="1487233399300" expanded="true" signature="481:525" ph="SELECT * FRO... hotline_users" />
-            <marker date="1487233399300" expanded="true" signature="636:3799" ph="..." />
-            <marker date="1487233399300" expanded="true" signature="744:2159" ph="..." />
-            <marker date="1487233399300" expanded="true" signature="786:842" ph="SELECT * FRO... hotline_user" />
-            <marker date="1487233399300" expanded="true" signature="848:1980" ph="..." />
-            <marker date="1487233399300" expanded="true" signature="984:1790" ph="..." />
-            <marker date="1487233399300" expanded="true" signature="1551:1667" ph="INSERT INTO `hotline_logowania`... " />
-            <marker date="1487233399300" expanded="true" signature="2221:2281" ph="SELECT * FRO... uzytkownicy_ewidencja" />
-            <marker date="1487233399300" expanded="true" signature="2221:2282" ph="SELECT * FRO... uzytkownicy_ewidencja" />
-            <marker date="1487233399300" expanded="true" signature="3229:3345" ph="INSERT INTO `hotline_logowania`... " />
+            <marker date="1487236782947" expanded="true" signature="93:135" ph="DELETE FROM " />
+            <marker date="1487236782947" expanded="true" signature="93:137" ph="DELETE FROM " />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/hotline_historia.php">
+    <entry file="file://$PROJECT_DIR$/przepnij.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="63" column="146" lean-forward="true" selection-start-line="63" selection-start-column="128" selection-end-line="63" selection-end-column="146" />
+        <state relative-caret-position="72">
+          <caret line="4" column="6" lean-forward="false" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#0;n#tr#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#1;n#tr#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#2;n#tr#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#3;n#tr#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#4;n#tr#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#5;n#tr#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1487235422427" expanded="true" signature="2543:2649" ph="SELECT * FRO... hotline_historia" />
-            <marker date="1487235422427" expanded="true" signature="2543:2658" ph="SELECT * FRO... hotline_historia" />
-            <marker date="1487235422427" expanded="true" signature="3127:3160" ph="SELECT * FRO... hotline_users" />
-            <marker date="1487235422427" expanded="true" signature="3127:3161" ph="SELECT * FRO... hotline_users" />
-            <marker date="1487235422427" expanded="true" signature="3127:3173" ph="SELECT * FRO... hotline_users" />
-            <marker date="1487235422427" expanded="true" signature="3592:3643" ph="SELECT * FRO... jednostki_organizacyjne_ewidencja" />
-            <marker date="1487235422427" expanded="true" signature="4213:4276" ph="SELECT * FRO... jednostki_organizacyjne_ewidencja" />
+            <marker date="1487160376854" expanded="true" signature="382:454" ph="SELECT * FRO... jednostki_organizacyjne_ewidencja" />
+            <marker date="1487160376854" expanded="true" signature="485:547" ph="SELECT * FRO... stanowiska_ewidencja" />
+            <marker date="1487160376854" expanded="true" signature="942:1017" ph="SELECT * FRO... pracownicy_stanowiska" />
+            <marker date="1487160376854" expanded="true" signature="1353:1431" ph="UPDATE praco... " />
+            <marker date="1487160376854" expanded="true" signature="1524:1679" ph="UPDATE uzytk... " />
+            <marker date="1487160376854" expanded="true" signature="1758:1895" ph="SELECT * FRO... pracownicy_stanowiska" />
+            <marker date="1487160376854" expanded="true" signature="2102:2258" ph="UPDATE praco... " />
+            <marker date="1487160376854" expanded="true" signature="2375:2561" ph="INSERT INTO `pracownicy_stanowiska`... " />
+            <marker date="1487160376854" expanded="true" signature="2640:2765" ph="UPDATE cash_... " />
+            <marker date="1487160376854" expanded="true" signature="2921:3068" ph="INSERT INTO `cash_agenci_historia_zmian_oddzialow`... " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/style">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <caret line="3" column="5" lean-forward="true" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/hotline_logowanie.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1476">
-          <caret line="82" column="9" lean-forward="true" selection-start-line="82" selection-start-column="9" selection-end-line="82" selection-end-column="9" />
-          <folding>
-            <marker date="1487235512811" expanded="true" signature="2254:2285" ph="SELECT * FRO... hotline_logowania" />
-            <marker date="1487235512811" expanded="true" signature="2254:2312" ph="SELECT * FRO... hotline_logowania" />
-            <marker date="1487235512811" expanded="true" signature="2790:2836" ph="SELECT * FRO... hotline_users" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
+        <state relative-caret-position="575">
           <caret line="84" column="78" lean-forward="false" selection-start-line="84" selection-start-column="78" selection-end-line="84" selection-end-column="78" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1186,13 +1109,63 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/usun.php">
+    <entry file="file://$PROJECT_DIR$/admin/hotline_historia.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="55" lean-forward="false" selection-start-line="5" selection-start-column="55" selection-end-line="5" selection-end-column="55" />
+        <state relative-caret-position="72">
+          <caret line="73" column="0" lean-forward="true" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
           <folding>
-            <marker date="1487236782947" expanded="true" signature="93:135" ph="DELETE FROM " />
-            <marker date="1487236782947" expanded="true" signature="93:137" ph="DELETE FROM " />
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#0;n#tr#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#1;n#tr#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#2;n#tr#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#3;n#tr#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#4;n#tr#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#5;n#tr#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1487239842253" expanded="true" signature="2208:2314" ph="SELECT * FRO... hotline_historia" />
+            <marker date="1487239842253" expanded="true" signature="2208:2323" ph="SELECT * FRO... hotline_historia" />
+            <marker date="1487239842253" expanded="true" signature="2792:2825" ph="SELECT * FRO... hotline_users" />
+            <marker date="1487239842253" expanded="true" signature="2792:2826" ph="SELECT * FRO... hotline_users" />
+            <marker date="1487239842253" expanded="true" signature="2792:2838" ph="SELECT * FRO... hotline_users" />
+            <marker date="1487239842253" expanded="true" signature="3257:3308" ph="SELECT * FRO... jednostki_organizacyjne_ewidencja" />
+            <marker date="1487239842253" expanded="true" signature="3878:3941" ph="SELECT * FRO... jednostki_organizacyjne_ewidencja" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="34" lean-forward="true" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+          <folding>
+            <marker date="1487240857023" expanded="true" signature="502:546" ph="SELECT * FRO... hotline_users" />
+            <marker date="1487240857023" expanded="true" signature="807:863" ph="SELECT * FRO... hotline_user" />
+            <marker date="1487240857023" expanded="true" signature="1572:1709" ph="INSERT INTO `hotline_logowania`... " />
+            <marker date="1487240857023" expanded="true" signature="2263:2323" ph="SELECT * FRO... uzytkownicy_ewidencja" />
+            <marker date="1487240857023" expanded="true" signature="2263:2324" ph="SELECT * FRO... uzytkownicy_ewidencja" />
+            <marker date="1487240857023" expanded="true" signature="3271:3408" ph="INSERT INTO `hotline_logowania`... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/hotline_logowanie.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="568">
+          <caret line="73" column="61" lean-forward="false" selection-start-line="73" selection-start-column="61" selection-end-line="73" selection-end-column="61" />
+          <folding>
+            <marker date="1487240928387" expanded="true" signature="2107:2138" ph="SELECT * FRO... hotline_logowania" />
+            <marker date="1487240928387" expanded="true" signature="2107:2165" ph="SELECT * FRO... hotline_logowania" />
+            <marker date="1487240928387" expanded="true" signature="2643:2689" ph="SELECT * FRO... hotline_users" />
           </folding>
         </state>
       </provider>

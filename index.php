@@ -27,6 +27,9 @@ require_once ('config/config.php');
 
 </head>
 <body>
+<?php
+$_SESSION[ip] = $_SERVER['REMOTE_ADDR'];
+?>
 <div class="container main" style="margin-top: 60px">
     <div class="row login">
         <div class="col-lg-4 col-md-4 col-sm-6 col-lg-offset-4 col-md-offset-4 col-sm-offset-3">
