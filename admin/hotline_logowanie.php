@@ -53,7 +53,7 @@ $limit = 0;
 
         </tr>
         <?php
-        $zapytanie_historia = "SELECT * FROM hotline_logowania";
+        $zapytanie_historia = "SELECT * FROM hotline_logowania ORDER BY id_logowanie DESC";
         $wynik_historia = $db13->query($zapytanie_historia);
         $ilosc_historia = $wynik_historia->num_rows;
         $licznik=0;
@@ -69,7 +69,7 @@ $limit = 0;
                 $wynik_historia_admin = $db13->query($zapytanie_historia_admin);
                 $tablica_historia_admin = $wynik_historia_admin->fetch_assoc();
                 $nazwa = $tablica_historia_admin[imie]." ".$tablica_historia_admin[nazwisko];
-                ;?>
+                ?>
 
                 <td><?php echo $nazwa; ?></td>
 

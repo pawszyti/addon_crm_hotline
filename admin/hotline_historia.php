@@ -61,7 +61,7 @@ else
 
         </tr>
         <?php
-        $zapytanie_historia = "SELECT * FROM hotline_historia, hotline_akcja WHERE hotline_historia.id_akcja = hotline_akcja.id";
+        $zapytanie_historia = "SELECT * FROM hotline_historia, hotline_akcja WHERE hotline_historia.id_akcja = hotline_akcja.id ORDER BY data DESC ";
         $wynik_historia = $db13->query($zapytanie_historia);
         $ilosc_historia = $wynik_historia->num_rows;
         $licznik=0;

@@ -82,7 +82,7 @@ unset($_SESSION['alert2']);
             {
                 echo
                     "<td>
-                     <a href='admin/usun.php?id=".$tablica_admins['id_crm']." class='btn btn-danger'>Usuń</a>
+                     <a href='admin/usun.php?id=".$tablica_admins['id_crm']."' class='btn btn-danger'>Usuń</a>
                      </td>";
 
             }
