@@ -75,7 +75,7 @@ $limit = 0;
         <th style="text-align: center">Nazwisko</th>
         <th style="text-align: center">Jednostka Org.</th>
         <th style="text-align: center">Czy aktywny</th>
-        <th style="text-align: center">Odblokuj</th>
+        <th style="text-align: center">Odblokuj CRM</th>
         <th style="text-align: center">Przepnij</th>
         <th style="text-align: center">Modyfikuj</th>
         <th style="text-align: center">Domena</th>
@@ -152,7 +152,7 @@ $limit = 0;
                             echo "<td><input type=submit class=\"btn btn-warning\" value='Przepnij' data-toggle=\"modal\" class=\"myButton2\" data-target=\"#exampleModal" . $tablica[id] . "\">
                             <td><a class=\"btn btn-success \" href='modyfikuj.php?id=".$tablica[id]."' \">Modyfikuj</a>
                             </td>
-                            <td><input type=submit class=\"btn btn-info\" value='Zmień hasło' onclick=\"bootbox . confirm('Czy chcesz zmienić hasło domenowe dla użytkownia<b> " . $tablica['imie'] . " " . $tablica['nazwisko'] . "</b>  na Capital1?', function (result){ if (result == true) { window . location . href = 'sambapass.php?login=" . $login ."&id=".$id_user."'};});\" class=\"myButton2\"></td>
+                            <td><input type=submit class=\"btn btn-info\" value='Zresetuj hasło' onclick=\"bootbox . confirm('Czy chcesz zmienić hasło domenowe dla użytkownia<b> " . $tablica['imie'] . " " . $tablica['nazwisko'] . "</b>  na Capital1?', function (result){ if (result == true) { window . location . href = 'sambapass.php?login=" . $login ."&id=".$id_user."'};});\" class=\"myButton2\"></td>
                             </td>";
 
 // **** okno dialogowe - start ****
@@ -161,7 +161,7 @@ $limit = 0;
                                              <div class=\"modal-content\">
                                                   <div class=\"modal-header\">
                                                      <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>
-                                                     <h4 id=\"exampleModalLabel\">Wybierz oddział docelowy dla użytkownika: <br /></h4><h4><b>".$tablica_hr[imie]." ".$tablica_hr[nazwisko]."</b></h4>
+                                                     <h4 id=\"exampleModalLabel\">Wybierz oddział docelowy dla użytkownika: <br /></h4><h4><b>".$tablica_hr[imie]." ".$tablica_hr[nazwisko]."</b></h4>Login: ".$tablica_hr[login]."
 
                                                    </div>
                                                    <div class=\"modal-body\">";
