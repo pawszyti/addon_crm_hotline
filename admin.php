@@ -1,6 +1,8 @@
 <?php
 session_start();
+// STRONA GŁÓWNA PANELU ADMINISTRATORA
 if(isset($_SESSION['hotline']) && $_SESSION['hotline'] == sha1(admin) && isset($_COOKIE['admin']))
+//sprawdzanie czy zalogowany jako admin
 {
 require_once ('config/config.php');
 $username = $_SESSION['username'];
@@ -33,14 +35,13 @@ setcookie("admin", 'online', time() + 1800); //czas życia cookie
 <?php
 echo "<div>".$_SESSION['alert2']."</div>";
 unset($_SESSION['alert2']);
+//alert error lub success
 ?>
 <div class="container">
 
     <a class="btn btn-success col-lg-2 col-lg-offset-3" disabled>Użytkownicy</a>
     <a href="admin/hotline_historia.php" class="btn btn-danger col-lg-2" style="margin-left: 6px;margin-right: 6px" >Historia akcji</a>
     <a href="admin/hotline_logowanie.php" class="btn btn-info col-lg-2" >Historia logowań</a>
-
-
 
     <a href="admin/hotline_users.php" class="btn btn-default col-lg-4 col-lg-offset-4" style="margin-top: 20px; margin-bottom: 20px" data-toggle="modal" data-target="#exampleModal">Dodaj użytkownika</a>
 
@@ -52,14 +53,16 @@ unset($_SESSION['alert2']);
     <th style="text-align: center">Nazwisko.</th>
     <th style="text-align: center">Login</th>
     <th style="text-align: center">Usuń</th>
-
+<!-- Nagłowki tabelu użytkowników -->
 </tr>
 <?php
         $zapytanie_admins = "SELECT * FROM hotline_users";
         $wynik_admins = $db13->query($zapytanie_admins);
         $ilosc_admins = $wynik_admins->num_rows;
+        //wykonaj zapytanie "wszyscy uzytkownicy z tabeli HOTLINE_USERS Z 1.13"
         $licznik=0;
         for ($i = 0; $i < $ilosc_admins; $i++)
+        //petla for która wyświetla wszystkie znalezione wyniki
         {
             ?>
             <?php
@@ -68,21 +71,22 @@ unset($_SESSION['alert2']);
             ?>
 
             <tr>
-            <td><?php echo $licznik; ?></td>
-            <td><?php echo $tablica_admins[id_crm]; ?></td>
-            <td><?php echo $tablica_admins[imie]; ?></td>
-            <td><?php echo $tablica_admins[nazwisko]; ?></td>
-            <td><?php echo $tablica_admins[login]; ?></td>
+            <td><?php echo $licznik; ?></td> <!-- td lp-->
+            <td><?php echo $tablica_admins[id_crm]; ?></td> <!-- td crm - id -->
+            <td><?php echo $tablica_admins[imie]; ?></td> <!-- td imie -->
+            <td><?php echo $tablica_admins[nazwisko]; ?></td> <!-- td nazwisko -->
+            <td><?php echo $tablica_admins[login]; ?></td> <!-- td login -->
                 <?php
                 if ($tablica_admins[login]=='admin')
                 {
-                    echo "<td><a disabled class='btn btn-danger'>Usuń</a> </td>";
+                    echo "<td><a disabled class='btn btn-danger'>Usuń</a> </td>"; //jesli uzytkownik nazywa się admin - dodaj przysick usunięcia z atrybutem disabled
                 }
             else
             {
                 echo
                     "<td>
-                     <a href='admin/usun.php?id=".$tablica_admins['id_crm']."' class='btn btn-danger'>Usuń</a>
+                     <a href='admin/usun.php?id=".$tablica_admins['id_crm']."' class='btn btn-danger'>Usuń</a>  
+                     <!-- tworzy przycisk usunięcia użytkownika - który przesyła jego id za pomocą GET do pliku admin/usun.php-->
                      </td>";
 
             }
@@ -95,12 +99,13 @@ unset($_SESSION['alert2']);
 
 
 // **** okno dialogowe - start ****
+//stworzenie okna dialogowego, pozwalającego na dodanie nowego uzytkownika jako administrator
 echo "<div class=\"modal fade\" id=\"exampleModal\" tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel'>
         <div class=\"modal-dialog\" role=\"document\">
             <div class=\"modal-content\">
                 <div class=\"modal-header\">
                     <button type='button' class='close' data-dismiss='modal' aria-label=\"Close\"><span aria-hidden='true'>&times;</span></button>
-                    <h4 id='exampleModalLabel'>Aby dodać, wpisz id użytkownia: <br /></h4><h4><b>".$tablica_hr[imie]." ".$tablica_hr[nazwisko]."</b></h4>
+                    <h4 id='exampleModalLabel'>Aby dodać, wpisz id użytkownia z CRM: <br /></h4><h4><b>".$tablica_hr[imie]." ".$tablica_hr[nazwisko]."</b></h4>
                 </div>
                 <div class='modal-body'>
 
@@ -125,7 +130,7 @@ else
 {
   header('location: logout.php');
   exit;
-  //jesli pierwszy warunek nie został spełniony to prześlij to strony wylogowania
+  //jesli pierwszy warunek (zalogowany) nie został spełniony to prześlij to strony wylogowania
 }
 //LOGOWANIE - SPRAWDZENIE - STOP
     ?>

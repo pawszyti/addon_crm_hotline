@@ -1,13 +1,16 @@
 <?php
 session_start();
+//OKNO LOGOWANIA
 if (isset($_SESSION['hotline']) && $_SESSION['hotline'] == sha1(lock) && isset($_COOKIE['hotline']))
 {
+    //jesli użytkownik jest już zalogowany to odeślij do do main.php / nie pozwól wyświetlić strony logowania
     header('location: main.php');
     exit();
 }
 
 if (isset($_SESSION['hotline']) && $_SESSION['hotline'] == sha1(admin) && isset($_COOKIE['admin']))
 {
+    //jesli administrator jest już zalogowany to odeślij do do admin.php / nie pozwól wyświetlić strony logowania
     header('location: admin.php');
     exit();
 }
@@ -29,6 +32,7 @@ require_once ('config/config.php');
 <body>
 <?php
 $_SESSION[ip] = $_SERVER['REMOTE_ADDR'];
+//pobierz adres ip użytkownika do zmiennej sesyjnej 'ip'
 ?>
 <div class="container main" style="margin-top: 60px">
     <div class="row login">
@@ -38,6 +42,7 @@ $_SESSION[ip] = $_SERVER['REMOTE_ADDR'];
             <div class="alert alert-warning">Wymagane jest zalogowanie</div>
 
             <form action="login.php" method="post">
+                <!-- prześlij wpisane dane do pliku login.php -->
                 <div class="form-group">
                     Login: <input type="text" name="username" class="form-control" placeholder="Login" autocomplete="off">
                 </div>
@@ -57,6 +62,7 @@ $_SESSION[ip] = $_SERVER['REMOTE_ADDR'];
         $error = $_SESSION['error'];
         unset($_SESSION['error']);
         echo "<br />" . $error;
+        //wyświetl alert jeśli istnieje a nastepnie usuń go ze zmniennej
     }
 
 
