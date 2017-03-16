@@ -1,12 +1,16 @@
 <?php
 session_start();
+//STRONA GŁÓWNA APLIKACJI
+//sprawdzanie zalogowania użytkownika
 if(isset($_SESSION['hotline']) && $_SESSION['hotline'] == sha1(lock) && isset($_COOKIE['hotline']))
 {
 require_once ('config/config.php');
+//zmiene zalogowanej osoby
 $username = $_SESSION['username'];
 $name = $_SESSION['name'];
 $surname = $_SESSION['surname'];
 $limit = 0;
+//odnowienie ciasteczek podczas odświerzania
     if (($username=='k.szpond')||($username=='p.szymczyk')||($username=='m.pianka')||($username=='p.jakacki'))
         {
             setcookie("hotline", 'online', time() + 9900); //czas życia cookie
@@ -42,11 +46,14 @@ $limit = 0;
 
 <div class="container">
     <?php
+    //wyświetlenie wczesniej ustawionego alertu
     echo $_SESSION['alert2'];
+    //wyczyszczenie zmiennej alert by po odświerzeniu nie pokazała sie ponowanie
     unset($_SESSION['alert2']);
     ?>
     <div>
         <form action='' method="post">
+            <!-- Przycisk wyszukiwania - IMIE -->
             <div class="col-lg-4">  <span class="input input--hoshi"><section class="content">
 					<input class="input__field input__field--hoshi" type="text" id="input-4" name="imie" autocomplete="off"/>
 					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
@@ -54,7 +61,8 @@ $limit = 0;
 					</label>
 				    </span>
             </div>
-        <div class="col-lg-4"> <span class="input input--hoshi">
+            <!-- Przycisk wyszukiwania - NAZWISKO -->
+            <div class="col-lg-4"> <span class="input input--hoshi">
 					<input class="input__field input__field--hoshi" type="text" id="input-4" name="nazwisko" autocomplete="off" />
 					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
 					<span class="input__label-content input__label-content--hoshi">Nazwisko</span>
@@ -63,6 +71,7 @@ $limit = 0;
                     </div>
             <br />
         <div class="col-lg-4 col-lg-offset-0 col-md-3 col-md-offset-1 col-sm-4 col-xs-10 col-xs-offset-1"">
+            <!-- Przycisk Wyszukaj -->
             <button type="submit" class="btn btn-default form-control">Wyszukaj</button>
         </div>
     </form>
@@ -70,6 +79,7 @@ $limit = 0;
 
     <table class="table table-striped" cellspacing='0' style='text-align: center'>
     <tr>
+        <!-- nagłówki tabeli -->
         <th style="text-align: center">lp.</th>
         <th style="text-align: center">Imię</th>
         <th style="text-align: center">Nazwisko</th>
@@ -83,16 +93,22 @@ $limit = 0;
     </tr>
 
     <?php
+    //jesli istnieje zmienna imie OR naziwsko
     if(isset($_POST['imie'])||($_POST['nazwisko']))
     {
+        //jesli zmienna imie AND naziwsko jest pusta
         if(($_POST['imie']=="") && ($_POST['nazwisko']==""))
         {
+            //alert informujące, że nic nie zostało wpisane
             $_SESSION['alert'] = '<div class="alert alert-danger" style="margin-top: 30px">Nic nie wpisano.</div>';}
         else
         {
+            //licznik
             $lp = 0;
+            //podstawianie zmiennych POST pod krótsze naszwy
             $imie = $_POST['imie'];
             $nazwisko = $_POST['nazwisko'];
+            //zapytanie zwracające wyszukiwane wyniki
             $zapytanie = "SELECT *  FROM jednostki_organizacyjne_ewidencja, uzytkownicy_ewidencja WHERE jednostki_organizacyjne_ewidencja.id = uzytkownicy_ewidencja.id_jednostki_organizacyjnej AND nazwisko LIKE '$nazwisko%' AND imie LIKE '$imie%'" ;
             if ($wynik = $db2->query($zapytanie))
             {
@@ -101,35 +117,43 @@ $limit = 0;
 
                 if ($ilosc<1)
                 {
+                    //jesli nic nie znaleziono, wyświetl alert informujący
                     $_SESSION['alert'] = '<div class="alert alert-danger" style="margin-top: 30px">Nie znaleziono pasującego użytkownika w systemie.</div>';
 
                 }
                 else
                 {
+                    //wypisz znalezione wyniki za pomocą pętli for
                     for ($i = 0; $i < $ilosc; $i++)
                     {
                         $tablica = $wynik->fetch_assoc();
                         $pesel = $tablica['pesel'];
                         $idi = $tablica['id'];
+                        //zapyranie sprawdzające użytkownika w bazie HR
                         $zapytanie_hr = "SELECT * FROM pracownicy_ewidencja WHERE id LIKE '$idi'";
                         $wynik_hr = $db2_hr->query($zapytanie_hr);
                         $tablica_hr = $wynik_hr->fetch_assoc();
+                        //status czy pracuje w bazie HR
                         $pracuje = $tablica_hr['czy_pracuje'];
+                        //usunięcie kropki z loginu w celu użycia w sambie
                         $login = str_replace(".", "", $tablica_hr['login']);
                         $id_user = $tablica_hr['id'];
 
                         if ($pracuje == 0)
                         {
+                            //jesli osoba ma ustawione nie pracuje w HR, zakończ te działanie pętli i zacznik od nowa (nie wyświetli rekordu)
                             continue;
                         }
                         $limit = $limit + 1;
-
+                        //limit wyświetlen na stronie (zbyt duzo wyświetlen --> długie działanie)
                         if ($limit == 26)
                         {
                             $_SESSION['alert'] = '<div class="alert alert-danger">Znaleziono więcej niż 25 wyników, zawęź kryteria wyszukiwania.</div>';
+                            //przerwanie działania pętli po wyświetleniu okreslonej liczby wyników
                             break;
                         }
                         $lp = $lp + 1;
+                        //wrzuć dane do tabeli
                         echo "
                             <tr>
                             <td>" . $lp . "</td>
@@ -137,7 +161,7 @@ $limit = 0;
                             <td>" . $tablica['nazwisko'] . "</td>
                             <td>" . $tablica['nazwa'] . "</td>
                             <td>";
-
+                            //wyświetl status czy zablokowany , podstawiając odpowiedni obrazek
                             if ($tablica['status'] == 1)
                             {
                                 echo "<img src=\"img/ok.png\" width='25px'>";
@@ -148,7 +172,9 @@ $limit = 0;
                             }
 
                             echo "</td>";
+                            //Przycisk odblokuj, wraz z wymaganym potwierdzeniem
                             echo "<td><input type=submit class=\"btn btn-danger\" value='Odblokuj' onclick=\"bootbox.confirm('Czy chcesz odblokować użytkownika<b> " . $tablica['imie'] . " " . $tablica['nazwisko'] . "</b>  i zmienić hasło na PESEL?', function(result){ if (result==true) {window.location.href='odblokuj.php?pesel=" . $tablica['pesel'] . "&id=".$tablica['id']."'}; });\" class=\"myButton2\"></td>";
+                            //Przycisk przepnij, wyświetlający okno dialogowe
                             echo "<td><input type=submit class=\"btn btn-warning\" value='Przepnij' data-toggle=\"modal\" class=\"myButton2\" data-target=\"#exampleModal" . $tablica[id] . "\">
                             <td><a class=\"btn btn-success \" href='modyfikuj.php?id=".$tablica[id]."' \">Modyfikuj</a>
                             </td>
@@ -170,7 +196,7 @@ echo "<b><h5>Obecne stanowiska:</h5></b>";
 
 
 
-
+        //wyświetl wszystkie aktwne stanowiska u pracownika
         $zapytanie_stanowiska = "SELECT *  FROM pracownicy_stanowiska WHERE id_pracownika='$tablica[id]' AND status=1";
         $wynik_stanowiska = $db2_hr->query($zapytanie_stanowiska);
         $ilosc_stanowiska = $wynik_stanowiska->num_rows;
@@ -180,7 +206,7 @@ echo "<b><h5>Obecne stanowiska:</h5></b>";
             if ($tablica_stanowiska[czy_glowne]==1){
                 echo"<b>";
             }
-
+            //wyświetl nazwe jednostki organizacyjnej
             $zapytanie_jednostka = "SELECT * FROM jednostki_organizacyjne_ewidencja WHERE id='$tablica_stanowiska[id_jednostki_organizacyjnej]'";
             $wynik_jednostka = $db2->query($zapytanie_jednostka);
             $ilosc_jednostka = $wynik_jednostka->num_rows;
@@ -188,13 +214,13 @@ echo "<b><h5>Obecne stanowiska:</h5></b>";
 
 
             echo $tablica_jednostka['nazwa'] . " | ";
-
+            //wyświetl nazwe stanowiska
             $zapytanie_stanowisko = "SELECT * FROM stanowiska_ewidencja WHERE id='$tablica_stanowiska[id_stanowiska]'";
             $wynik_stanowisko = $db2->query($zapytanie_stanowisko);
             $ilosc_stanowisko = $wynik_stanowisko->num_rows;
             $tablica_stanowisko = $wynik_stanowisko->fetch_assoc();
 
-
+            //jeśli stnowisko jest ustawione jako główne to pogrub je
             echo $tablica_stanowisko['nazwa']."</p>";
             if ($tablica_stanowiska[czy_glowne]==1){
                 echo"</b>";
@@ -209,7 +235,7 @@ echo "<b><h5>Obecne stanowiska:</h5></b>";
                                                      echo "
                                                      <select name='oddzial' class='form-control'>
                                                      <option value ='0'>- - wybierz oddzial- -</option>";
-
+                                                        //wyświetl select z lista oddziałów
                                                         $zapytanie_oddzialy = "SELECT * FROM jednostki_organizacyjne_ewidencja WHERE ((id<799 OR id>1399) AND (id<16999 OR id=20000)) AND (status=1) AND (nazwa!='a') ORDER BY nazwa ";
                                                         $wynik_oddzialy = $db2->query($zapytanie_oddzialy);
                                                         $ilosc_oddzialy = $wynik_oddzialy->num_rows;
@@ -228,7 +254,7 @@ echo "<b><h5>Obecne stanowiska:</h5></b>";
 <!--// // **** select stanowiska start **** -->
                                                         <select name='stanowisko' class='form-control'>
                                                         <option value ='0' >- - wybierz stanowisko- -</option>";
-
+                                                        //wyświetl select z listą stanowisk
                                                         $zapytanie_stanowiska = "SELECT * FROM stanowiska_ewidencja WHERE status=1 AND ID!=215 AND nazwa!='ppppp' AND usunieto=0 ORDER BY nazwa ";
                                                         $wynik_stanowiska = $db2->query($zapytanie_stanowiska);
                                                         $ilosc_stanowiska = $wynik_stanowiska->num_rows;
@@ -240,6 +266,7 @@ echo "<b><h5>Obecne stanowiska:</h5></b>";
                                                             echo " 
                                                             <option value = '".$id_stanowiska."' > ".$nazwa_stanowiska." </option >";
                                                         }
+                                                        //ukryte podel id które za pomocą post przeniesie do następnej strony iz uzytkownika
                                                         echo "<select />
 <!-- // **** select stanowiska end **** -->
                                                         <input type='hidden' value='".$tablica[id]."' name='id'>
@@ -260,6 +287,7 @@ echo "<b><h5>Obecne stanowiska:</h5></b>";
 
                     if ($lp==0)
                     {
+                        //alert, informujący o nie znalezieniu użytkownika
                         $_SESSION['alert'] = '<div class="alert alert-danger" style="margin-top: 30px">Nie znaleziono pasującego użytkownika w systemie.</div>';
                     }
                 }
@@ -270,26 +298,28 @@ echo "<b><h5>Obecne stanowiska:</h5></b>";
     }
     else
     {
+        //jesli nic nie jest wyświetlone, wyświetl warning o wyszukaniu pracowników
         echo "<div class=\"alert alert-warning\" style='margin-top: 65px'>Aby wyświetlić liste, wyszukaj pracowników</div>";
     }
     ?>
     </table>
 
     <?php
+    //wyświetl zmienną alert
     echo "<div>".$_SESSION['alert']."</div>";
     unset($_SESSION['alert']);
 }
 else
 {
-  header('location: logout.php');
-  exit();
-  //jesli pierwszy warunek nie został spełniony to prześlij to strony wylogowania
+    //jesli pierwszy warunek nie został spełniony to prześlij to strony wylogowania
+    header('location: logout.php');
+    exit();
 }
 //LOGOWANIE - SPRAWDZENIE - STOP
     ?>
-
 </div>
 <script src="js/classie.js"></script>
+<!-- javascript pozwalajacy wyświetlic okno dialogowe do przepinania -->
 <script>
     $('#exampleModal').on('show.bs.modal', function (event) {
        var button = $(event.relatedTarget) // Button that triggered the modal
@@ -335,6 +365,7 @@ else
     })();
 </script>
 <?php
+//zamknij połączenie z bazami danych
 $db2->close();
 $db13->close();
 $db2_hr->close();

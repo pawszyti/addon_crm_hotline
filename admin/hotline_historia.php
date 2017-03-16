@@ -1,5 +1,8 @@
 <?php
 session_start();
+//HISTORIA WYKONANY AKCJI
+
+//czy zalogowany jako admin
 if(isset($_SESSION['hotline']) && $_SESSION['hotline'] == sha1(admin) && isset($_COOKIE['admin']))
 {
 require_once ('../config/config.php');
@@ -54,6 +57,7 @@ setcookie("admin", 'online', time() + 1800); //czas życia cookie
 
         </tr>
         <?php
+        //wyświetl historie z 1.13 posortowaną po dacie
         $zapytanie_historia = "SELECT * FROM hotline_historia, hotline_akcja WHERE hotline_historia.id_akcja = hotline_akcja.id ORDER BY data DESC ";
         $wynik_historia = $db13->query($zapytanie_historia);
         $ilosc_historia = $wynik_historia->num_rows;
@@ -66,6 +70,7 @@ setcookie("admin", 'online', time() + 1800); //czas życia cookie
                 <td><?php echo $tablica_historia[data]?></td>
 
                 <?php
+                //sprawdzanie jaki user/admin znajduje się pod ID z 1.13
                 $zapytanie_historia_admin = "SELECT * FROM hotline_users WHERE id_crm LIKE $tablica_historia[id_crm] ";
                 $wynik_historia_admin = $db13->query($zapytanie_historia_admin);
                 $tablica_historia_admin = $wynik_historia_admin->fetch_assoc();
@@ -75,6 +80,7 @@ setcookie("admin", 'online', time() + 1800); //czas życia cookie
                 <td><?php echo $nazwa; ?></td>
 
                 <?php
+                //sprawdzanie jaki user się pod ID z 1.2
                 $zapytanie_historia_user = "SELECT * FROM uzytkownicy_ewidencja WHERE id LIKE  $tablica_historia[id_user]";
                 $wynik_historia_user = $db2->query($zapytanie_historia_user);
                 $tablica_historia_user = $wynik_historia_user->fetch_assoc();
@@ -89,6 +95,7 @@ setcookie("admin", 'online', time() + 1800); //czas życia cookie
                     echo "<td>n/d</td>";
                 }
                 else {
+                    //sprawdzanie co znajduje sie pod id jednostki organizacyjnej z 1.13
                     $zapytanie_historia_oddzial = "SELECT * FROM jednostki_organizacyjne_ewidencja WHERE id LIKE  $tablica_historia[id_oddzial] ";
                     $wynik_historia_oddzial = $db13->query($zapytanie_historia_oddzial);
                     $tablica_historia_oddzial = $wynik_historia_oddzial->fetch_assoc();

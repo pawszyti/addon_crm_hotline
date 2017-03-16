@@ -1,12 +1,16 @@
 <?php
 session_start();
+//STRONA MODYFIKACJI STANOWISK PRACOWNIKA
+//sprawdzanie zalogowania użytkownika
 if(isset($_SESSION['hotline']) && $_SESSION['hotline'] == sha1(lock) && isset($_COOKIE['hotline']))
 {
 require_once ('config/config.php');
+//zmiene zalogowanej osoby
 $username = $_SESSION['username'];
 $name = $_SESSION['name'];
 $surname = $_SESSION['surname'];
 $limit = 0;
+        //odnowienie ciasteczek podczas odświerzania
         if (($username=='k.szpond')||($username=='p.szymczyk')||($username=='m.pianka')||($username=='p.jakacki'))
         {
             setcookie("hotline", 'online', time() + 9900); //czas życia cookie
@@ -15,7 +19,9 @@ $limit = 0;
         {
             setcookie("hotline", 'online', time() + 1800); //czas życia cookie
         }
+//pobieranie danych z tablicy GET
 $id = $_GET[id];
+//zapytanie pozwalajacy wyświetlic dane , osoby edytowanej
 $zapytanie = "SELECT *  FROM uzytkownicy_ewidencja WHERE id='$id'" ;
 if ($wynik = $db2->query($zapytanie)) {
 $ilosc = $wynik->num_rows;
@@ -36,7 +42,7 @@ $licznik = 1;
     <script src="js/jquery-3.1.1.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/bootbox.min.js"></script> <!--plugin js do okien dialogowych (potwierdzenie) -->
-    <script src="js/bootstrap-select.min.js"></script>
+    <script src="js/bootstrap-select.min.js"></script> <!--Ładny select -->
 
 
 </head>
@@ -59,6 +65,7 @@ $licznik = 1;
 
 <div class="alert alert-info">
     <?php
+    //innformacja od osobie modyfikowanej
     echo "<h4>Modyfikujesz stanowiska pracownika: <b>".$tablica[imie]." ".$tablica[nazwisko]."<h4 /></b>";
     ?>
 </div>
@@ -71,6 +78,7 @@ unset($_SESSION['alert2']);
 <button class="btn btn-default col-lg-4 col-lg-offset-4 myButton2" style="margin-bottom: 15px" data-toggle="modal" data-target="#exampleModal">Dodaj stanowisko</button>
     <table class="table table-striped" cellspacing='0' style='text-align: center'>
     <tr>
+        <!-- //nagłówki tabeli -->
         <th style="text-align: center">lp.</th>
         <th style="text-align: center">Jednostka org.</th>
         <th style="text-align: center">Stanowisko</th>
@@ -79,12 +87,14 @@ unset($_SESSION['alert2']);
     </tr>
 
         <?php
+        //wyświetl wszystkie aktwne stanowiska u pracownika
         $zapytanie_stanowiska = "SELECT *  FROM pracownicy_stanowiska WHERE id_pracownika='$id' AND status=1";
         $wynik_stanowiska = $db2_hr->query($zapytanie_stanowiska);
         $ilosc_stanowiska = $wynik_stanowiska->num_rows;
         for ($i = 0; $i < $ilosc_stanowiska; $i++) {
             $tablica_stanowiska = $wynik_stanowiska->fetch_assoc();
 
+            //wyświetl nazwe jednostki organizacyjnej
             echo "<tr><td>".$licznik.".</td>";
             $licznik++;
             $zapytanie_jednostka = "SELECT * FROM jednostki_organizacyjne_ewidencja WHERE id='$tablica_stanowiska[id_jednostki_organizacyjnej]'";
@@ -95,14 +105,16 @@ unset($_SESSION['alert2']);
 
             echo "<td>".$tablica_jednostka['nazwa']."</td>";
 
+            //wyświetl nazwe stanowiska
             $zapytanie_stanowisko = "SELECT * FROM stanowiska_ewidencja WHERE id='$tablica_stanowiska[id_stanowiska]'";
             $wynik_stanowisko = $db2->query($zapytanie_stanowisko);
             $ilosc_stanowisko = $wynik_stanowisko->num_rows;
             $tablica_stanowisko = $wynik_stanowisko->fetch_assoc();
 
-
             echo "<td>".$tablica_stanowisko['nazwa']."</td>";
 
+
+//jeśli stnowisko jest ustawione jako główne to pogrub je
 if ($tablica_stanowiska[czy_glowne]==1)
 {
     echo "<td><input disabled type=submit class=\"btn btn-danger disabled\" value='Usuń' \" class=\"myButton2\"></td>
@@ -111,6 +123,7 @@ if ($tablica_stanowiska[czy_glowne]==1)
 }
 else
 {
+    //button Usun oraz Ustaw jako główne
     echo " <td><input type=submit class=\"btn btn-danger\" value='Usuń' onclick=\"bootbox.confirm('Czy chcesz usunąć stanowisko<b> " . $tablica_jednostka['nazwa'] . " | " . $tablica_stanowisko['nazwa'] . "</b>  ?', function(result){ if (result==true) {window.location.href='modyfikuj/usun_stanowisko.php?id=" . $tablica_stanowiska['id'] . "&id_pracownika=".$id."&oddzial=".$tablica_stanowiska[id_jednostki_organizacyjnej]."'}; });\" class=\"myButton2\"></td>
     <td> <input type=submit class=\"btn btn-info\" value='Ustaw' onclick=\"bootbox.confirm('Czy chcesz ustawić stanowisko <b> " . $tablica_jednostka['nazwa'] . " | " . $tablica_stanowisko['nazwa'] . "</b>  jako główne ?', function(result){ if (result==true) {window.location.href='modyfikuj/ustaw_glowne.php?id=" . $tablica_stanowiska['id'] . "&id_pracownika=".$id. "'}; });\" class=\"myButton2\"></td>";
 }}
@@ -127,6 +140,7 @@ else
     }
     else
     {
+        //jesli warunki zalogowania nie są spełnione, wyślij do strony logout.php
         header('location: logout.php');
         exit();
     }
@@ -152,6 +166,7 @@ else
                     <select name='oddzial' class='form-control selectpicker' data-live-search=\"true\">
                     <option value ='0'>- - wybierz oddzial- -</option>";
 
+                    //select z listą oddziałów, pomijając Doradców PHP oraz inne zbędne
                     $zapytanie_oddzialy = "SELECT * FROM jednostki_organizacyjne_ewidencja WHERE ((id<799 OR id>1399) AND (id<16999 OR id=20000)) AND (status=1) AND (nazwa!='a') ORDER BY nazwa ";
                     $wynik_oddzialy = $db2->query($zapytanie_oddzialy);
                     $ilosc_oddzialy = $wynik_oddzialy->num_rows;
@@ -170,7 +185,7 @@ else
                                                         
                     <select name='stanowisko' class='form-control selectpicker' data-live-search=\"true\">
                     <option value ='0' >- - wybierz stanowisko- -</option>";
-
+                    //select z listą oddziałów
                     $zapytanie_stanowiska = "SELECT * FROM stanowiska_ewidencja WHERE status=1 AND ID!=215 AND nazwa!='ppppp' AND usunieto=0 ORDER BY nazwa ";
                     $wynik_stanowiska = $db2->query($zapytanie_stanowiska);
                     $ilosc_stanowiska = $wynik_stanowiska->num_rows;

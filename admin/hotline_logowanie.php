@@ -1,5 +1,6 @@
 <?php
 session_start();
+//HISTORIA LOGOWAŃ
 if(isset($_SESSION['hotline']) && $_SESSION['hotline'] == sha1(admin) && isset($_COOKIE['admin']))
 {
 require_once ('../config/config.php');
@@ -52,6 +53,7 @@ setcookie("admin", 'online', time() + 1800); //czas życia cookie
 
         </tr>
         <?php
+        //wyświetl historie logowań z 1.13
         $zapytanie_historia = "SELECT * FROM hotline_logowania ORDER BY id_logowanie DESC";
         $wynik_historia = $db13->query($zapytanie_historia);
         $ilosc_historia = $wynik_historia->num_rows;
@@ -64,6 +66,7 @@ setcookie("admin", 'online', time() + 1800); //czas życia cookie
                 <td><?php echo $tablica_historia[data_logowanie]?></td>
 
                 <?php
+                //sprawdzanie jaki user/admin się pod ID z 1.13
                 $zapytanie_historia_admin = "SELECT * FROM hotline_users WHERE id_crm LIKE $tablica_historia[user_logowanie] ";
                 $wynik_historia_admin = $db13->query($zapytanie_historia_admin);
                 $tablica_historia_admin = $wynik_historia_admin->fetch_assoc();
