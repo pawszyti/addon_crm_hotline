@@ -39,7 +39,8 @@ $limit = 0;
 
 <div class="navbar navbar-default btn-variants navbar-fixed" role="navigation">
     <div style="text-align: center" class="col-lg-8 col-lg-offset-2 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
-        <h1 class="font_logo "><span style="color: blue">P</span><span style="color: red">A</span><span style="color: #ffcc00">N</span><span style="color: blue">E</span><span style="color: yellowgreen">L</span> <span style="color: red">H</span><span style="color: blue">O</span></span><span style="color: #ffcc00">T</span><span style="color: yellowgreen">L</span><span style="color: blue">I</span><span style="color: red">N</span><span style="color: #ffcc00">E</span></b></h1>
+        <h1 class="font_logo "><span style="color: blue">P</span><span style="color: red">A</span><span style="color: #ffcc00">N</span><span style="color: blue">E</span><span style="color: yellowgreen">L</span> <span style="color: red">H</span><span style="color: blue">O</span></span><span style="color: #ffcc00">T</span><span style="color: yellowgreen">L</span><span style="color: blue">I</span><span style="color: red">N</span><span style="color: #ffcc00">E</span><span style="color: pink"> :) </span></b></h1>
+        <h6><span style="color: deeppink">Pierwszy dzień wiosny :D</span></h6>
     </div>
   <div class="col-lg-1 col-lg-offset-1 col-md-2 col-md-offset-1 col-sm-2 col-sm-offset-1 col-sm-6 col-sm-offset-3 col-xs-4 col-xs-offset-4" ><a data-toggle="tooltip" data-placement="bottom" title="Zalogowany:<?php  echo "    ".$name." ".$surname; ?>" role="button" class="btn btn-default btn-sm " style="margin-top: 15px" href="logout.php">Wyloguj</a></div>
 </div>
