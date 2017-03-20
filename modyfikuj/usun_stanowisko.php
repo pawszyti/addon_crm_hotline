@@ -10,9 +10,6 @@ $oddzial = $_GET['oddzial'];
 $update_stanowiska = "UPDATE pracownicy_stanowiska SET status=0, czy_glowne=0 WHERE id='$id'";
 $db2_hr->query($update_stanowiska);
 
-
-
-
 //historia usunięcia stanowiska
 $id_admin = $_SESSION['id_pracownika'];
 $akcja = 5;

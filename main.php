@@ -29,7 +29,7 @@ $limit = 0;
     <title>Panel Hotline</title>
     <link href="css/style.css" rel="stylesheet">
     <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/set1.css" rel="stylesheet"> <!--plugin to bajeranckich input -->
+    <link href="css/set1.css" rel="stylesheet"> <!--plugin do bajeranckich input -->
 
     <script src="js/jquery-3.1.1.js"></script>
     <script src="js/bootstrap.js"></script>
@@ -63,7 +63,7 @@ $limit = 0;
             </div>
             <!-- Przycisk wyszukiwania - NAZWISKO -->
             <div class="col-lg-4"> <span class="input input--hoshi">
-					<input class="input__field input__field--hoshi" type="text" id="input-4" name="nazwisko" autocomplete="off" />
+					<input class="input__field input__field--hoshi" type="text" id="input-4" name="nazwisko" autocomplete="off" autofocus />
 					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
 					<span class="input__label-content input__label-content--hoshi">Nazwisko</span>
 					</label>
