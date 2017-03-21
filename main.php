@@ -103,6 +103,9 @@ $limit = 0;
             $_SESSION['alert'] = '<div class="alert alert-danger" style="margin-top: 30px">Nic nie wpisano.</div>';}
         else
         {
+            $_SESSION['name'] = $_POST['imie'];
+            $_SESSION['surname'] = $_POST['nazwisko'];
+
             //licznik
             $lp = 0;
             //podstawianie zmiennych POST pod krótsze naszwy

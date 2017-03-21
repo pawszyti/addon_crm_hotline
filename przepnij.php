@@ -78,7 +78,41 @@ $db13->query($insert_historia);
 
 //alert informujący o przepięciu
 $_SESSION['alert2'] = '<div class="alert alert-success">Użytkownik został przpięty w systemie CRM1 oraz CRM2<br />Zostały usunięte dotychczasowe stanowiska</div>';
-header('location: main.php');
+
+//jesli istnieje zmienna imie OR naziwsko
+if(isset($_SESSION['name'])||($_SESSION['surname']))
+{
+    //jesli zmienna imie AND naziwsko jest pusta
+    if(($_SESSION['name']=="") && ($_SESSION['surname']=="")) {
+        header('location: main.php');
+
+    }
+    echo
+        "
+        <div style='display: none'>
+        <form action='main.php' method='post' name='". $tablica[id] ."'>
+            <input type='hidden' value='".$_SESSION['name']."' name='imie'>
+            <input type='hidden' value='".$_SESSION['surname']."' name='nazwisko'>
+            <button type='submit' class='btn btn-primary btn-sm' id='formButton'>Powrót</button>
+            </form>
+        <script language=\"javascript\">
+        document.getElementById(\"formButton\").click();
+    </script>
+</div>        
+        "
+
+    ;
+
+
+
+
+}
+else {
+    header('location: main.php');
+
+}
+
+
 
 $db2->close();
 $db13->close();

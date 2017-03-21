@@ -54,7 +54,37 @@ $licznik = 1;
     </div>
 
     <div class="col-lg-2 col-lg-offset-0 col-md-2 col-md-offset-1 col-sm-2 col-sm-offset-1 col-sm-6 col-sm-offset-3 col-xs-4 col-xs-offset-4" >
-        <a role="button" class="btn btn-primary btn-sm " style="margin-top: 15px" href="main.php">Powrót</a>
+        <?php
+
+
+        //jesli istnieje zmienna imie OR naziwsko
+        if(isset($_SESSION['name'])||($_SESSION['surname']))
+        {
+        //jesli zmienna imie AND naziwsko jest pusta
+        if(($_SESSION['name']=="") && ($_SESSION['surname']=="")) {
+            echo "<a role=\"button\" class=\"btn btn-primary btn-sm \" style=\"margin-top: 15px\" href=\"main.php\">Powrót</a>";
+
+        }
+        echo
+            "<form action='main.php' method='post' name='". $tablica[id] ."'>
+            <input type='hidden' value='".$_SESSION['name']."' name='imie'>
+            <input type='hidden' value='".$_SESSION['surname']."' name='nazwisko'>
+            <button type='submit' class='btn btn-primary btn-sm' style='margin-top: 15px'>Powrót</button>
+            </form>
+        ";
+
+
+
+
+        }
+        else {
+            echo "<a role=\"button\" class=\"btn btn-primary btn-sm \" style=\"margin-top: 15px\" href=\"main.php\">Powrót</a>";
+        }
+
+
+        ?>
+
+
         <a data-toggle="tooltip" data-placement="bottom" title="Zalogowany:<?php  echo "    ".$name." ".$surname; ?>" role="button" class="btn btn-default btn-sm " style="margin-top: 15px" href="logout.php">Wyloguj</a>
     </div>
 

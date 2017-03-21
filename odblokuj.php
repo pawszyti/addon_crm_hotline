@@ -31,7 +31,49 @@ $db13->query($insert_historia);
 
 //dodanie alertu
 $_SESSION['alert2'] = '<div class="alert alert-success">Konto użytkownika '.$imie.' '.$nazwisko.' zostało odblokowane. <br />Należy zamknąć wszystkie przeglądarki i jako hasło wpisać numer PESEL.</div>';
-header('location: main.php');
+
+
+
+
+//jesli istnieje zmienna imie OR naziwsko
+if(isset($_SESSION['name'])||($_SESSION['surname']))
+{
+    //jesli zmienna imie AND naziwsko jest pusta
+    if(($_SESSION['name']=="") && ($_SESSION['surname']=="")) {
+        header('location: main.php');
+
+    }
+    echo
+        "
+        <div style='display: none'>
+        <form action='main.php' method='post' name='". $tablica[id] ."'>
+            <input type='hidden' value='".$_SESSION['name']."' name='imie'>
+            <input type='hidden' value='".$_SESSION['surname']."' name='nazwisko'>
+            <button type='submit' class='btn btn-primary btn-sm' id='formButton'>Powrót</button>
+            </form>
+        <script language=\"javascript\">
+        document.getElementById(\"formButton\").click();
+    </script>
+</div>        
+        "
+
+    ;
+
+
+
+
+}
+else {
+    header('location: main.php');
+
+}
+
+
+
+
+
+
+
 
 $db2->close();
 $db13->close();
