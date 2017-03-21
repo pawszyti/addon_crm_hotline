@@ -39,8 +39,7 @@ $limit = 0;
 
 <div class="navbar navbar-default btn-variants navbar-fixed" role="navigation">
     <div style="text-align: center" class="col-lg-8 col-lg-offset-2 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
-        <h1 class="font_logo "><span style="color: blue">P</span><span style="color: red">A</span><span style="color: #ffcc00">N</span><span style="color: blue">E</span><span style="color: yellowgreen">L</span> <span style="color: red">H</span><span style="color: blue">O</span></span><span style="color: #ffcc00">T</span><span style="color: yellowgreen">L</span><span style="color: blue">I</span><span style="color: red">N</span><span style="color: #ffcc00">E</span><span style="color: pink"> :) </span></b></h1>
-        <h6><span style="color: deeppink">Pierwszy dzień wiosny :D</span></h6>
+        <h1 class="font_logo ">PANEL HOTLINE</h1>
     </div>
   <div class="col-lg-1 col-lg-offset-1 col-md-2 col-md-offset-1 col-sm-2 col-sm-offset-1 col-sm-6 col-sm-offset-3 col-xs-4 col-xs-offset-4" ><a data-toggle="tooltip" data-placement="bottom" title="Zalogowany:<?php  echo "    ".$name." ".$surname; ?>" role="button" class="btn btn-default btn-sm " style="margin-top: 15px" href="logout.php">Wyloguj</a></div>
 </div>
@@ -110,7 +109,7 @@ $limit = 0;
             $imie = $_POST['imie'];
             $nazwisko = $_POST['nazwisko'];
             //zapytanie zwracające wyszukiwane wyniki
-            $zapytanie = "SELECT *  FROM jednostki_organizacyjne_ewidencja, uzytkownicy_ewidencja WHERE jednostki_organizacyjne_ewidencja.id = uzytkownicy_ewidencja.id_jednostki_organizacyjnej AND nazwisko LIKE '$nazwisko%' AND imie LIKE '$imie%'" ;
+            $zapytanie = "SELECT *  FROM jednostki_organizacyjne_ewidencja, uzytkownicy_ewidencja WHERE jednostki_organizacyjne_ewidencja.id = uzytkownicy_ewidencja.id_jednostki_organizacyjnej AND nazwisko LIKE '$nazwisko%' AND imie LIKE '$imie%' AND imie IS NOT NULL" ;
             if ($wynik = $db2->query($zapytanie))
             {
                 $ilosc = $wynik->num_rows;
@@ -124,8 +123,8 @@ $limit = 0;
                 }
                 else
                 {
-                    //wypisz znalezione wyniki za pomocą pętli for
-                    for ($i =0; $i < $ilosc; $i++)
+                     //wypisz znalezione wyniki za pomocą pętli for
+                    for ($p =0; $p < $ilosc; $p++)
                     {
                         $tablica = $wynik->fetch_assoc();
                         $pesel = $tablica['pesel'];
@@ -139,7 +138,6 @@ $limit = 0;
                         //usunięcie kropki z loginu w celu użycia w sambie
                         $login = str_replace(".", "", $tablica_hr['login']);
                         $id_user = $tablica_hr['id'];
-
                         if ($pracuje == 0)
                         {
                             //jesli osoba ma ustawione nie pracuje w HR, zakończ te działanie pętli i zacznik od nowa (nie wyświetli rekordu)
