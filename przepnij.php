@@ -80,10 +80,10 @@ $db13->query($insert_historia);
 $_SESSION['alert2'] = '<div class="alert alert-success">Użytkownik został przpięty w systemie CRM1 oraz CRM2<br />Zostały usunięte dotychczasowe stanowiska</div>';
 
 //jesli istnieje zmienna imie OR naziwsko
-if(isset($_SESSION['name'])||($_SESSION['surname']))
+if(isset($_SESSION['name_back'])||($_SESSION['surname_back']))
 {
     //jesli zmienna imie AND naziwsko jest pusta
-    if(($_SESSION['name']=="") && ($_SESSION['surname']=="")) {
+    if(($_SESSION['name_back']=="") && ($_SESSION['surname_back']=="")) {
         header('location: main.php');
 
     }
@@ -91,8 +91,8 @@ if(isset($_SESSION['name'])||($_SESSION['surname']))
         "
         <div style='display: none'>
         <form action='main.php' method='post' name='". $tablica[id] ."'>
-            <input type='hidden' value='".$_SESSION['name']."' name='imie'>
-            <input type='hidden' value='".$_SESSION['surname']."' name='nazwisko'>
+            <input type='hidden' value='".$_SESSION['name_back']."' name='imie'>
+            <input type='hidden' value='".$_SESSION['surname_back']."' name='nazwisko'>
             <button type='submit' class='btn btn-primary btn-sm' id='formButton'>Powrót</button>
             </form>
         <script language=\"javascript\">

@@ -56,10 +56,10 @@ $licznik = 1;
 
 
         //jesli istnieje zmienna imie OR naziwsko
-        if(isset($_SESSION['name'])||($_SESSION['surname']))
+        if(isset($_SESSION['name_back'])||($_SESSION['surname_back']))
         {
         //jesli zmienna imie AND naziwsko jest pusta
-        if(($_SESSION['name']=="") && ($_SESSION['surname']=="")) {
+        if(($_SESSION['name_back']=="") && ($_SESSION['surname_back']=="")) {
             echo "<a role=\"button\" class=\"btn btn-primary btn-sm \" style=\"margin-top: 15px\" href=\"main.php\">Powrót</a>";
 
         }
@@ -67,8 +67,8 @@ $licznik = 1;
             "<form action='main.php' method='post' name='". $tablica[id] ."'>
                         <button type='submit' class='btn btn-primary btn-sm' style='margin-top: 15px; float: left;margin-right: 5px'>Powrót</button>
 
-            <input type='hidden' value='".$_SESSION['name']."' name='imie'>
-            <input type='hidden' value='".$_SESSION['surname']."' name='nazwisko'>
+            <input type='hidden' value='".$_SESSION['name_back']."' name='imie'>
+            <input type='hidden' value='".$_SESSION['surname_back']."' name='nazwisko'>
             </form>
         ";
 

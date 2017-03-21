@@ -103,8 +103,8 @@ $limit = 0;
             $_SESSION['alert'] = '<div class="alert alert-danger" style="margin-top: 30px">Nic nie wpisano.</div>';}
         else
         {
-            $_SESSION['name'] = $_POST['imie'];
-            $_SESSION['surname'] = $_POST['nazwisko'];
+            $_SESSION['name_back'] = $_POST['imie'];
+            $_SESSION['surname_back'] = $_POST['nazwisko'];
 
             //licznik
             $lp = 0;
