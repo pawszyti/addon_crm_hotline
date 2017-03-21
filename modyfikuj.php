@@ -43,8 +43,6 @@ $licznik = 1;
     <script src="js/bootstrap.js"></script>
     <script src="js/bootbox.min.js"></script> <!--plugin js do okien dialogowych (potwierdzenie) -->
     <script src="js/bootstrap-select.min.js"></script> <!--Ładny select -->
-
-
 </head>
 <body>
 
@@ -67,9 +65,10 @@ $licznik = 1;
         }
         echo
             "<form action='main.php' method='post' name='". $tablica[id] ."'>
+                        <button type='submit' class='btn btn-primary btn-sm' style='margin-top: 15px; float: left;margin-right: 5px'>Powrót</button>
+
             <input type='hidden' value='".$_SESSION['name']."' name='imie'>
             <input type='hidden' value='".$_SESSION['surname']."' name='nazwisko'>
-            <button type='submit' class='btn btn-primary btn-sm' style='margin-top: 15px'>Powrót</button>
             </form>
         ";
 
@@ -83,7 +82,7 @@ $licznik = 1;
 
 
         ?>
-
+       <!-- <a role="button" class="btn btn-primary btn-sm " href="main.php">Powrót</a>-->
 
         <a data-toggle="tooltip" data-placement="bottom" title="Zalogowany:<?php  echo "    ".$name." ".$surname; ?>" role="button" class="btn btn-default btn-sm " style="margin-top: 15px" href="logout.php">Wyloguj</a>
     </div>
