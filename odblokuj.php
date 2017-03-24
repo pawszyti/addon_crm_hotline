@@ -5,10 +5,11 @@ require('config/config.php');
 //pobieranie z tablicy GET
 $pesel = $_GET['pesel'];
 $idi = $_GET['id'];
+$data_modyfikacji_hasla = "2017-01-01";
 $pass = md5(ZIARNO_MD5.md5($pesel).ZIARNO_MD5); //haszowanie hasła do CRM
 
 //edycja danych w bazie CENTRUM - czy aktywny = 1 oraz zmiana hasła na pesel
-$update = "UPDATE uzytkownicy_ewidencja SET status=1, haslo='$pass' WHERE id LIKE '$idi'";
+$update = "UPDATE uzytkownicy_ewidencja SET status=1, haslo='$pass', data_modyfikacji_hasla='$data_modyfikacji_hasla'  WHERE id LIKE '$idi'";
 $db2->query($update);
 
 //podbranie danych pracownika w celu wyświetlania jego danych w alercie
