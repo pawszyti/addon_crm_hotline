@@ -238,7 +238,7 @@ echo "<b><h5>Obecne stanowiska:</h5></b>";
                                                      <select name='oddzial' class='form-control'>
                                                      <option value ='0'>- - wybierz oddzial- -</option>";
                                                         //wyświetl select z lista oddziałów
-                                                        $zapytanie_oddzialy = "SELECT * FROM jednostki_organizacyjne_ewidencja WHERE ((id<799 OR id>1399) AND (id<16999 OR id=20000)) AND (status=1) AND (nazwa!='a') ORDER BY nazwa ";
+                                                        $zapytanie_oddzialy = "SELECT * FROM jednostki_organizacyjne_ewidencja WHERE status=1 AND nazwa NOT LIKE '.%' ORDER BY nazwa ";
                                                         $wynik_oddzialy = $db2->query($zapytanie_oddzialy);
                                                         $ilosc_oddzialy = $wynik_oddzialy->num_rows;
                                                         for ($b = 0; $b < $ilosc_oddzialy; $b++)
@@ -246,18 +246,18 @@ echo "<b><h5>Obecne stanowiska:</h5></b>";
                                                             $tablica_oddzialy = $wynik_oddzialy->fetch_assoc();
                                                             $id_oddzialu = $tablica_oddzialy[id];
                                                             $nazwa_oddzialu = $tablica_oddzialy[nazwa];
-                                                            echo " 
+                                                            echo "
                                                             <option value = '".$id_oddzialu."' > ".$nazwa_oddzialu." </option > ";
                                                         }
 
                                                         echo " </select > <br />
 <!--// **** select oddzialy end **** -->
- 
+
 <!--// // **** select stanowiska start **** -->
                                                         <select name='stanowisko' class='form-control'>
                                                         <option value ='0' >- - wybierz stanowisko- -</option>";
                                                         //wyświetl select z listą stanowisk
-                                                        $zapytanie_stanowiska = "SELECT * FROM stanowiska_ewidencja WHERE status=1 AND ID!=215 AND nazwa!='ppppp' AND usunieto=0 ORDER BY nazwa ";
+                                                        $zapytanie_stanowiska = "SELECT * FROM stanowiska_ewidencja WHERE status=1 AND usunieto=0 ORDER BY nazwa ";
                                                         $wynik_stanowiska = $db2->query($zapytanie_stanowiska);
                                                         $ilosc_stanowiska = $wynik_stanowiska->num_rows;
                                                         for ($c = 0; $c < $ilosc_stanowiska; $c++)
@@ -265,14 +265,14 @@ echo "<b><h5>Obecne stanowiska:</h5></b>";
                                                             $tablica_stanowiska = $wynik_stanowiska->fetch_assoc();
                                                             $id_stanowiska = $tablica_stanowiska[id];
                                                             $nazwa_stanowiska = $tablica_stanowiska[nazwa];
-                                                            echo " 
+                                                            echo "
                                                             <option value = '".$id_stanowiska."' > ".$nazwa_stanowiska." </option >";
                                                         }
                                                         //ukryte podel id które za pomocą post przeniesie do następnej strony iz uzytkownika
                                                         echo "<select />
 <!-- // **** select stanowiska end **** -->
                                                         <input type='hidden' value='".$tablica[id]."' name='id'>
-               
+
                                                        </div>
                                                   <div class=\"modal-footer\">
                                                   <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Anuluj</button>

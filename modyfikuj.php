@@ -188,7 +188,7 @@ else
                     <h4 id=\"exampleModalLabel\">Aby dodać, wybierz oddział oraz stanowisko: <br /></h4><h4><b>".$tablica_hr[imie]." ".$tablica_hr[nazwisko]."</b></h4>
                 </div>
                 <div class=\"modal-body\">";
-                    echo " 
+                    echo "
                     <form action=\"modyfikuj/dodaj_stanowisko.php\" method='post' name='" . $tablica[id] . "'>";
 // **** select oddzialy start ****
                     echo "
@@ -196,38 +196,38 @@ else
                     <option value ='0'>- - wybierz oddzial- -</option>";
 
                     //select z listą oddziałów, pomijając Doradców PHP oraz inne zbędne
-                    $zapytanie_oddzialy = "SELECT * FROM jednostki_organizacyjne_ewidencja WHERE ((id<799 OR id>1399) AND (id<16999 OR id=20000)) AND (status=1) AND (nazwa!='a') ORDER BY nazwa ";
+                    $zapytanie_oddzialy = "SELECT * FROM jednostki_organizacyjne_ewidencja WHERE nazwa NOT LIKE '.%' AND status=1 ORDER BY nazwa ";
                     $wynik_oddzialy = $db2->query($zapytanie_oddzialy);
                     $ilosc_oddzialy = $wynik_oddzialy->num_rows;
                     for ($b = 0; $b < $ilosc_oddzialy; $b++)
                     {
                         $tablica_oddzialy = $wynik_oddzialy->fetch_assoc();
-                        echo " 
+                        echo "
                         <option value = '".$tablica_oddzialy[id]."' > ".$tablica_oddzialy[nazwa]." </option > ";
                     }
 
                     echo " </select > <br /><br />
- 
+
 <!--// **** select oddzialy end **** -->
- 
+
 <!--// // **** select stanowiska start **** -->
-                                                        
+
                     <select name='stanowisko' class='form-control selectpicker' data-live-search=\"true\">
                     <option value ='0' >- - wybierz stanowisko- -</option>";
                     //select z listą oddziałów
-                    $zapytanie_stanowiska = "SELECT * FROM stanowiska_ewidencja WHERE status=1 AND ID!=215 AND nazwa!='ppppp' AND usunieto=0 ORDER BY nazwa ";
+                    $zapytanie_stanowiska = "SELECT * FROM stanowiska_ewidencja WHERE status=1 AND usunieto=0 ORDER BY nazwa ";
                     $wynik_stanowiska = $db2->query($zapytanie_stanowiska);
                     $ilosc_stanowiska = $wynik_stanowiska->num_rows;
                     for ($c = 0; $c < $ilosc_stanowiska; $c++)
                     {
                         $tablica_stanowiska = $wynik_stanowiska->fetch_assoc();
-                        echo " 
+                        echo "
                         <option value = '".$tablica_stanowiska[id]."' > ".$tablica_stanowiska[nazwa]." </option >";
                     }
                     echo "<select />
 
 <!-- // **** select stanowiska end **** -->
-                        
+
                     <input type='hidden' value='".$tablica[id]."' name='id'>
                </div>
                <div class=\"modal-footer\">
